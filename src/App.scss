@@ -1,4 +1,20 @@
 $primary: rgb(255, 170, 0);
 
+.text-indent-1 {
+    text-indent: 1rem;
+}
+
+.text-indent-2 {
+    text-indent: 2rem;
+}
+
+.text-indent-3 {
+    text-indent: 3rem;
+}
+
+.text-indent-4 {
+    text-indent: 4rem;
+}
+
 // Import Bootstrap and its default variables
 @import '../node_modules/bootstrap/scss/bootstrap.scss';
