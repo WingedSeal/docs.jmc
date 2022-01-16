@@ -61,7 +61,7 @@ main.main()`} language='python' />
                 </ListGroup>
                 <h2>Usage</h2>
                 <p>After you have finished installing the complier, you need a little bit of a setup.</p>
-                <p>1. Run <code className="code">jmc.config</code> and it'll automatically generate <code className="code">jmc.config</code> in the same directory it's in.</p>
+                <p>1. Run <code className="code">JMC-Compiler.exe</code> and it'll automatically generate <code className="code">jmc.config</code> in the same directory it's in.</p>
                 <p>2. Edit <Button
                     className="btn-secondary btn-mini p-1"
                     onClick={() => setOpenConfig(!openConfig)}
