@@ -14,7 +14,7 @@ import { HashRouter as Router, Route, Routes, Navigate } from 'react-router-dom'
 function App() {
 
   return (
-    <Router basename={process.env.PUBLIC_URL}>
+    <Router>
       <div className="App">
         <AppNavbar />
         <Routes>
