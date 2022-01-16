@@ -9,7 +9,7 @@ import Features from './pages/Features';
 import Syntax from './pages/features/Syntax';
 import React from 'react'
 //import 'bootstrap/dist/css/bootstrap.css';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 
 function App() {
 
@@ -28,6 +28,7 @@ function App() {
             <Route path="syntax" element={<Syntax />} />
           </Route>
 
+          <Route path="/*" element={<Navigate to="/" />} />
         </Routes>
       </div>
     </Router>
