@@ -39,10 +39,58 @@ $primary: rgb(255, 170, 0);
     }
 }
 
-.code {
+code.code {
     background-color: rgb(219, 219, 219);
     margin: 0 0.2rem;
     color: rgb(0, 0, 0);
     padding: 0.1rem 0.3rem;
     border-radius: 0.4rem;
+}
+
+details.feature {
+    border: 0.1rem solid rgb(48, 48, 48);
+    border-radius: 1rem;
+    transition: 0.5s ease-in-out;
+    @extend .p-3;
+    @extend .mb-3;
+
+    summary {
+        transition: 0.3s ease-in-out;
+        @extend .fw-bold;
+        @extend .fs-3;
+
+    }
+
+    &[open] {
+        @extend .pb-1;
+        @extend .text-indent-2;
+
+        p {
+            @extend .text-indent-3;
+            @extend .fs-5;
+        }
+
+        summary {
+            @extend .pb-2;
+            @extend .mb-2;
+            border-bottom: 0.3rem solid rgb(48, 48, 48);
+        }
+    }
+
+    * {
+        animation: sweep .5s ease-in-out;
+    }
+
+    @keyframes sweep {
+        0% {
+            opacity: 0;
+            margin-left: -10px
+        }
+
+        100% {
+            opacity: 1;
+            margin-left: 0px
+        }
+    }
+
 }

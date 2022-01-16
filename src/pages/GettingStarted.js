@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import CodeBlock from '../components/CodeBlock'
 import { ListGroup, Badge, Button, Collapse, Card } from 'react-bootstrap'
 import './../App.scss'
@@ -21,7 +22,7 @@ const GettingStarted = () => {
                         </div>
                         <p>Simply download <a href="https://github.com/WingedSeal/jmc/releases/latest/download/JMC-Compiler.exe" rel="noopener noreferrer">JMC-compiler.exe</a> from
                             Github. (Or find a latest pre-release version <a href="https://github.com/WingedSeal/jmc/releases" target="_blank" rel="noopener noreferrer">here</a>.)</p>
-                        <p>Then put <span className="fw-bold">JMC-Compiler.exe</span> in any directory, preferably, your datapack folder (The folder that will have <code className='code'>data</code> folder and <code className='code'>pack.mcmeta</code> inside. For example, <code className='code'>C:/Users/User/AppData/Roaming/.minecraft/profiles/1.17.1 Fabric/saves/JMC World\datapacks\My Datapack\JMC-Compiler.exe"</code>)</p>
+                        <p>Then put <span className="fw-bold">JMC-Compiler.exe</span> in any directory, preferably, your datapack folder (The folder that will have <code className='code'>data</code> folder and <code className='code'>pack.mcmeta</code> inside. For example, <code className='code'>C:/Users/User/AppData/Roaming/.minecraft/profiles/1.17.1 Fabric/saves/JMC World/datapacks/My Datapack/JMC-Compiler.exe"</code>)</p>
                     </ListGroup.Item>
                     <ListGroup.Item as="li" className="fs-5 d-flex flex-column">
                         <div className="d-flex align-items-baseline flex-wrap-reverse justify-content-center justify-content-sm-between">
@@ -97,6 +98,8 @@ main.main()`} language='python' />
                 </Collapse>
                 <p>3. Code your jmc file(s)</p>
                 <p>4. Run <code className="code">JMC-Compiler.exe</code> again</p>
+                <h2>Programming</h2>
+                <p>Now that you have learned how to setup the compiler, it's time to start programming. First, create <code className="code">main.jmc</code>. Then head to the <Link to='/features'>Features section</Link>~</p>
             </div >
         </div >
     )
