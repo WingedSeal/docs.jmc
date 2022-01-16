@@ -9,12 +9,12 @@ import Features from './pages/Features';
 import Syntax from './pages/features/Syntax';
 import React from 'react'
 //import 'bootstrap/dist/css/bootstrap.css';
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import { HashRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 
 function App() {
 
   return (
-    <Router basename='/docs.jmc'>
+    <Router basename={process.env.PUBLIC_URL}>
       <div className="App">
         <AppNavbar />
         <Routes>

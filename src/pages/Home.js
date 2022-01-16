@@ -15,7 +15,7 @@ const Home = ({ setNavActive }) => {
                 <p>Normal function from .mcfunction file will not work in JMC, the syntax is almost entirely different.</p>
                 <h2>How to use JMC?</h2>
                 <p>Basically, you just have to create a <code>.jmc</code> file, write some code, run <a href="https://github.com/WingedSeal/jmc" target="_blank" rel="noopener noreferrer">JMC-Complier</a>, change some configuration and you are done!</p>
-                <p>Without further ado, let's <Link to="/getting-started"><span onClick={() => { setNavActive("getting_started") }}>get started</span></Link>!</p>
+                <p>Without further ado, let's <Link to="/getting-started">get started</Link>!</p>
             </div>
         </>
     )
