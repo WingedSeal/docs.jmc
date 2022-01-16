@@ -1,13 +1,16 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react'
-import PropTypes from 'prop-types'
 import { Nav, Navbar, NavDropdown } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import './../../App.scss'
 
 
-const AppNavbar = ({ active, setActive }) => {
+const AppNavbar = () => {
+    const [active, setActive] = useState('TEST')
     const [navShow, setNavShow] = useState(true);
     const [y, setY] = useState(document.scrollingElement.scrollHeight);
+    const [height, setHeight] = useState(0)
+    const location = useLocation();
+    const ref = useRef(null)
 
     const handleNavigation = useCallback((e) => {
         if (y > window.scrollY) {
@@ -17,6 +20,7 @@ const AppNavbar = ({ active, setActive }) => {
         }
         setY(window.scrollY)
     }, [y]);
+
     useEffect(() => {
         window.addEventListener("scroll", handleNavigation);
 
@@ -25,33 +29,37 @@ const AppNavbar = ({ active, setActive }) => {
         };
     }, [handleNavigation]);
 
-    const [height, setHeight] = useState(0)
-    const ref = useRef(null)
 
     useEffect(() => {
         setHeight(ref.current.clientHeight)
+
     }, [])
+
+    useEffect(() => {
+        setActive(location.pathname)
+    }, [location.pathname])
+
 
     return (
         <div>
-            <Navbar bg="dark" variant="dark" fixed="top" expand="lg" collapseOnSelect style={{ transition: '0.2s ease-in-out', transform: navShow ? '' : 'translateY(-100%)' }} ref={ref}>
+            <Navbar bg="dark" variant="dark" fixed="top" expand="lg" collapseOnSelect style={{ transition: '0.3s ease-in-out', transform: navShow ? '' : 'translateY(-100%)' }} ref={ref}>
                 <Navbar.Brand>
                     <Link to="" className="text-decoration-none">
-                        <div className="ms-5 text-primary fs-1" onClick={() => { setActive("home") }}>JMC</div>
+                        <div className="ms-5 text-primary fs-1">JMC</div>
                     </Link>
                 </Navbar.Brand>
                 <Navbar.Toggle className='m-2' />
                 <Navbar.Collapse className='ms-3'>
-                    <Nav className='fs-5 ms-auto me-5' activeKey={active} onSelect={(selectedKey) => setActive(selectedKey)}>
-                        <Nav.Link eventKey="home" as={Link} to="/">Home</Nav.Link>
-                        <Nav.Link eventKey="getting_started" as={Link} to="/getting-started">Getting Started</Nav.Link>
-                        <Nav.Link eventKey="patch_notes" as={Link} to="/patch-notes">Patch Notes</Nav.Link>
-                        <Nav.Link eventKey="examples" as={Link} to="/examples">Examples</Nav.Link>
-                        <Nav.Link eventKey="warnings" as={Link} to="/warnings">Warnings</Nav.Link>
+                    <Nav className='fs-5 ms-auto me-5' activeKey={active}>
+                        <NavLink to="/">Home</NavLink>
+                        <NavLink to="/getting-started">Getting Started</NavLink>
+                        <NavLink to="/patch-notes">Patch Notes</NavLink>
+                        <NavLink to="/examples">Examples</NavLink>
+                        <NavLink to="/warnings">Warnings</NavLink>
                         <NavDropdown title="Features">
-                            <NavDropdown.Item eventKey="features" as={Link} to="/features">Features</NavDropdown.Item>
+                            <NavItem to="/features">Features</NavItem>
                             <NavDropdown.Divider />
-                            <NavDropdown.Item eventKey="features/syntax" as={Link} to="/features/syntax">Syntax</NavDropdown.Item>
+                            <NavItem to="/features/syntax">Syntax</NavItem>
                         </NavDropdown>
                     </Nav>
                 </Navbar.Collapse>
@@ -62,13 +70,18 @@ const AppNavbar = ({ active, setActive }) => {
 }
 //<h1 className="display-2 m-auto fw-bolder overflow-hidden">Javascript-like Minecraft functions</h1>
 
-AppNavbar.propTypes = {
-    active: PropTypes.string,
-    setActive: PropTypes.func
-}
-
 
 export default AppNavbar
 
 
+const NavLink = ({ to, children }) => {
+    return (
+        <Nav.Link eventKey={to} as={Link} to={to}>{children}</Nav.Link>
+    )
+}
 
+const NavItem = ({ to, children }) => {
+    return (
+        <NavDropdown.Item eventKey={to} as={Link} to={to}>{children}</NavDropdown.Item>
+    )
+}

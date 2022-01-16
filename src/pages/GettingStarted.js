@@ -1,12 +1,11 @@
 import React, { useState } from 'react'
-import PropTypes from 'prop-types'
 import CodeBlock from '../components/CodeBlock'
 import { ListGroup, Badge, Button, Collapse, Card } from 'react-bootstrap'
 import './../App.scss'
 
 
 // d-flex justify-content-between align-items-start
-const GettingStarted = ({ setNavActive }) => {
+const GettingStarted = () => {
     const [openMainPy, setOpenMainPy] = useState(false);
     const [openConfig, setOpenConfig] = useState(false);
     return (
@@ -101,10 +100,6 @@ main.main()`} language='python' />
             </div >
         </div >
     )
-}
-
-GettingStarted.propTypes = {
-    setNavActive: PropTypes.func
 }
 
 export default GettingStarted
