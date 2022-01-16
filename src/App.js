@@ -16,7 +16,7 @@ function App() {
 
   return (
     <Router basename='/docs.jmc'>
-      <div className="App">
+      <div className="App d-flex flex-column">
         <AppNavbar setActive={setNavActive} active={navActive} />
         <Routes>
           <Route path="/" element={<Home setNavActive={setNavActive} />} />

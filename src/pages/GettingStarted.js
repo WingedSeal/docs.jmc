@@ -75,16 +75,15 @@ main.main()`} language='python' />
                         <Card style={{ width: 'calc(100%)' }}>
                             <Card.Body>
                                 <Card.Title className='fs-4'>Configurations</Card.Title>
-                                <Card.Text className=''>
-                                    <p><code className="code">"namespace"</code> : Namespace of your datapack.</p>
-                                    <p><code className="code">"description"</code> : Description of your datapack.</p>
-                                    <p><code className="code">"pack_format"</code> : Packformat of your datapack. This will be in <code className="code">pack.mcmeta</code>.</p>
-                                    <p><code className="code">"target_file"</code> : Path to your main <code className="code">.jmc</code> file.</p>
-                                    <p><code className="code">"output"</code> : Path to directory of your compiled datapack.</p>
-                                    <p><code className="code">"keep_compiling"</code> : Whether or not to end the program after compiling. If set to <code className="code">true</code>, it'll keep recompiling until you exit the program with pauses between them.</p>
-                                    <p><code className="code">"debug_mode"</code> : If set to <code className="code">true</code>, change logging level to DEBUG and create log file on run.</p>
-                                    <h5>Default</h5>
-                                    <CodeBlock code={`{
+                                <p><code className="code">"namespace"</code> : Namespace of your datapack.</p>
+                                <p><code className="code">"description"</code> : Description of your datapack.</p>
+                                <p><code className="code">"pack_format"</code> : Packformat of your datapack. This will be in <code className="code">pack.mcmeta</code>.</p>
+                                <p><code className="code">"target_file"</code> : Path to your main <code className="code">.jmc</code> file.</p>
+                                <p><code className="code">"output"</code> : Path to directory of your compiled datapack.</p>
+                                <p><code className="code">"keep_compiling"</code> : Whether or not to end the program after compiling. If set to <code className="code">true</code>, it'll keep recompiling until you exit the program with pauses between them.</p>
+                                <p><code className="code">"debug_mode"</code> : If set to <code className="code">true</code>, change logging level to DEBUG and create log file on run.</p>
+                                <h5>Default</h5>
+                                <CodeBlock code={`{
   "namespace": "namespace",
   "description": "Compiled by JMC by WingedSeal",
   "pack_format": 7,
@@ -93,7 +92,6 @@ main.main()`} language='python' />
   "keep_compiling": false,
   "debug_mode": false
 }`} language='json' />
-                                </Card.Text>
                             </Card.Body>
                         </Card>
                     </div>
