@@ -22,7 +22,7 @@ const GettingStarted = ({ setNavActive }) => {
                         </div>
                         <p>Simply download <a href="https://github.com/WingedSeal/jmc/releases/latest/download/JMC-Compiler.exe" rel="noopener noreferrer">JMC-compiler.exe</a> from
                             Github. (Or find a latest pre-release version <a href="https://github.com/WingedSeal/jmc/releases" target="_blank" rel="noopener noreferrer">here</a>.)</p>
-                        <p>Then put <span className="fw-bold">JMC-compiler.exe</span> in any directory, preferably, your datapack folder (The folder that will have <code className='code'>data</code> folder and <code className='code'>pack.mcmeta</code> inside.)</p>
+                        <p>Then put <span className="fw-bold">JMC-Compiler.exe</span> in any directory, preferably, your datapack folder (The folder that will have <code className='code'>data</code> folder and <code className='code'>pack.mcmeta</code> inside. For example, <code className='code'>C:/Users/User/AppData/Roaming/.minecraft/profiles/1.17.1 Fabric/saves/JMC World\datapacks\My Datapack\JMC-Compiler.exe"</code>)</p>
                     </ListGroup.Item>
                     <ListGroup.Item as="li" className="fs-5 d-flex flex-column">
                         <div className="d-flex align-items-baseline flex-wrap-reverse justify-content-center justify-content-sm-between">
@@ -42,12 +42,12 @@ const GettingStarted = ({ setNavActive }) => {
                         </Button>
                         <Collapse in={openMainPy}>
                             <div id="move_main_py" className='m-2'>
-                                <p>Create a <code className='code'>.py</code> file at the desired directly then insert the following code (The file name cannot be <code className='code'>main.py</code>)</p>
+                                <p>Create a <code className='code'>.py</code> file at the desired directory then insert the following code (The file name cannot be <code className='code'>main.py</code>)</p>
                                 <CodeBlock code={`import sys
 sys.path.append('PATH_TO_FOLDER_HERE')  # noqa
 import main  # type: ignore
 main.main()`} language='python' />
-                                <p>And replace <code className='code'>PATH_TO_FOLDER_HERE</code> with pure window path to <code className='code'>main.py</code>'s parent directory you downloaded. For example, if my main.py's path is <code className="code">D:/Users/User/Documents/GitHub/JMC</code></p>
+                                <p>And replace <code className='code'>PATH_TO_FOLDER_HERE</code> with pure window path to <code className='code'>main.py</code>'s parent directory you downloaded. For example, if my main.py's path is <code className="code">D:/Users/User/Documents/GitHub/JMC/main.py</code></p>
                                 <code className="code">run.py</code>
                                 <CodeBlock code={`import sys
 sys.path.append('D:/Users/User/Documents/GitHub/JMC')  # noqa
