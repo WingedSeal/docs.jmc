@@ -1,11 +1,11 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import './../../App.scss'
-//import 'bootstrap/dist/css/bootstrap.css';
 
 
-const AppNavbar = () => {
+const AppNavbar = ({ active, setActive }) => {
     return (
         <div>
             <Navbar bg="dark" variant="dark" sticky="top" expand="lg" collapseOnSelect>
@@ -16,14 +16,16 @@ const AppNavbar = () => {
                 </Navbar.Brand>
                 <Navbar.Toggle className='m-2' />
                 <Navbar.Collapse className='ms-3'>
-                    <Nav className='fs-5'>
-                        <Nav.Link eventKey="1" as={Link} to="/">Home</Nav.Link>
-                        <Nav.Link eventKey="2" as={Link} to="/patch-notes">Patch Notes</Nav.Link>
-                        <Nav.Link eventKey="3" as={Link} to="/examples">Examples</Nav.Link>
-                        <Nav.Link eventKey="4" as={Link} to="/warnings">Warnings</Nav.Link>
+                    <Nav className='fs-5 ms-auto me-5' activeKey={active} onSelect={(selectedKey) => setActive(selectedKey)}>
+                        <Nav.Link eventKey="home" as={Link} to="/">Home</Nav.Link>
+                        <Nav.Link eventKey="getting_started" as={Link} to="/getting-started">Getting Started</Nav.Link>
+                        <Nav.Link eventKey="patch_notes" as={Link} to="/patch-notes">Patch Notes</Nav.Link>
+                        <Nav.Link eventKey="examples" as={Link} to="/examples">Examples</Nav.Link>
+                        <Nav.Link eventKey="warnings" as={Link} to="/warnings">Warnings</Nav.Link>
                         <NavDropdown title="Features">
-                            <NavDropdown.Item eventKey="5" as={Link} to="/features">Features</NavDropdown.Item>
-                            <NavDropdown.Item eventKey="6" as={Link} to="/features/syntax">Syntax</NavDropdown.Item>
+                            <NavDropdown.Item eventKey="features" as={Link} to="/features">Features</NavDropdown.Item>
+                            <NavDropdown.Divider />
+                            <NavDropdown.Item eventKey="features/syntax" as={Link} to="/features/syntax">Syntax</NavDropdown.Item>
                         </NavDropdown>
                     </Nav>
                 </Navbar.Collapse>
@@ -32,4 +34,13 @@ const AppNavbar = () => {
     )
 }
 
+AppNavbar.propTypes = {
+    active: PropTypes.string,
+    setActive: PropTypes.func
+}
+
+
 export default AppNavbar
+
+
+

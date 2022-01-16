@@ -1,5 +1,9 @@
 $primary: rgb(255, 170, 0);
 
+.text-indent-0 {
+    text-indent: 0;
+}
+
 .text-indent-1 {
     text-indent: 1rem;
 }
@@ -18,3 +22,27 @@ $primary: rgb(255, 170, 0);
 
 // Import Bootstrap and its default variables
 @import '../node_modules/bootstrap/scss/bootstrap.scss';
+
+.paragraphs {
+    @extend .m-3;
+
+    &>p {
+        @extend .m-3;
+        @extend .text-indent-3;
+        @extend .fs-5;
+    }
+
+    &>h2 {
+        @extend .m-3;
+        @extend .fw-bold;
+        @extend .fs-2;
+    }
+}
+
+.code {
+    background-color: rgb(219, 219, 219);
+    margin: 0 0.2rem;
+    color: rgb(0, 0, 0);
+    padding: 0.1rem 0.3rem;
+    border-radius: 0.2rem;
+}
