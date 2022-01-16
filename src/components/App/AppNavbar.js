@@ -32,8 +32,7 @@ const AppNavbar = () => {
 
     useEffect(() => {
         setHeight(ref.current.clientHeight)
-
-    }, [])
+    }, [ref.current.clientHeight])
 
     useEffect(() => {
         setActive(location.pathname)
