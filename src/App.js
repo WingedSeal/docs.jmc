@@ -15,7 +15,7 @@ function App() {
 
   return (
     <Router basename='/docs.jmc'>
-      <div className="App d-flex flex-column">
+      <div className="App">
         <AppNavbar />
         <Routes>
           <Route path="/" element={<Home />} />
