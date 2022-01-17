@@ -31,7 +31,7 @@ const Features = () => {
                 <section id="import" />
                 <details className='feature'>
                     <summary>Import</summary>
-                    <p>As we all know, putting everything into a single file isn't always the brighest idea.</p>
+                    <p>As we all know, putting everything into a single file isn't always the brightest idea.</p>
                     <p>The way to solve this using <code className="code">@import</code> which literally move context of another jmc file to the top of the main file.</p>
                     <p>For those who are familiar with programming, unlike normal programming language, importing <span className='fw-bold'>doesn't</span> add extra namespace to content</p>
                     <CodeBlock code={`@import '[<directory>/]<file_name>';`} language='javascript' />
@@ -49,7 +49,7 @@ const Features = () => {
 function tellraw_message() {
     tellraw @a "Message"; //comment
 }`} language='javascript' />
-                    <Related to="/features#import" text="Function" />
+                    <Related to="/features/syntax#function_defining" text="Function" />
                 </details>
 
                 <section id="load_tick" />
@@ -61,7 +61,7 @@ function tellraw_message() {
                         <li>Generate <code className="code">load.json</code> with a value of <code className="code">__load__.mcfunction</code></li>
                         <li>Generate <code className="code">tick.json</code> with a value of <code className="code">__tick__.mcfunction</code></li>
                     </ul>
-                    <Related to="/features#import" text="Function" />
+                    <Related to="/features/syntax#function_defining" text="Function" />
                 </details>
 
                 <Link to="/features/syntax"><Button variant="outline-dark" className='w-100 fs-3 fw-bold text-indent-2 p-3 mb-3' style={{ borderRadius: '1rem' }}>Custom Syntax</Button></Link>

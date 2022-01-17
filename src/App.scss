@@ -112,3 +112,14 @@ details.feature {
     }
 
 }
+
+details.not-done {
+    summary {
+        @extend .text-muted;
+        @extend .text-decoration-line-through;
+    }
+
+    p {
+        @extend .fst-italic;
+    }
+}
