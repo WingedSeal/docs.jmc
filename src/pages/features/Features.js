@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 const Features = () => {
     return (
         <div>
-            <Link to="/features" className='text-decoration-none text-reset'><h1 className="fs-1 text-center text-md-start m-5 mb-5 fw-bolder">Features</h1></Link>
+            <Link to="/features" className='text-decoration-none text-reset'><h1 className="fs-1 text-center text-md-start m-5 fw-bolder">Features</h1></Link>
             <div className="paragraphs">
 
                 <section id="multiline_command" />

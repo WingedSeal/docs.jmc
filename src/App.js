@@ -2,7 +2,6 @@ import './App.scss';
 import AppNavbar from './components/App/AppNavbar'
 import Home from './pages/Home';
 import GettingStarted from './pages/GettingStarted';
-import PatchNotes from './pages/PatchNotes';
 import Examples from './pages/Examples';
 import Warnings from './pages/Warnings'
 import Features from './pages/features/Features';
@@ -21,7 +20,6 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="getting-started" element={<GettingStarted />} />
-          <Route path="patch-notes" element={<PatchNotes />} />
           <Route path="examples" element={<Examples />} />
           <Route path="warnings" element={<Warnings />} />
           <Route path="features" >

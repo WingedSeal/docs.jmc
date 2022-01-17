@@ -26,6 +26,12 @@ $primary: rgb(255, 170, 0);
 .paragraphs {
     @extend .m-3;
 
+    li {
+        @extend .ms-3;
+        @extend .mb-2;
+        @extend .fs-5;
+    }
+
     &>p {
         @extend .m-3;
         @extend .text-indent-3;

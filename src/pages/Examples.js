@@ -5,7 +5,7 @@ import Related from '../components/Features/Related'
 const Examples = () => {
     return (
         <div>
-            <h1 className="fs-1 text-center text-md-start m-5 mb-5 fw-bolder">Examples</h1>
+            <h1 className="fs-1 text-center text-md-start m-5 fw-bolder">Examples</h1>
 
             <div className="paragraphs">
                 <h2>Basic Examples</h2>

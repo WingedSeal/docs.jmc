@@ -52,8 +52,8 @@ const AppNavbar = () => {
                 <Navbar.Collapse className='ms-3'>
                     <Nav className='fs-5 ms-auto me-5' activeKey={active}>
                         <NavLink to="/">Home</NavLink>
-                        <NavLink to="/getting-started">Getting Started</NavLink>
-                        <NavLink to="/patch-notes">Patch Notes</NavLink>
+                        <NavLink to="/getting-started">Getting-Started</NavLink>
+                        <Nav.Link href='https://github.com/WingedSeal/jmc/releases'>Patch-Notes(Github)</Nav.Link>
                         <NavLink to="/examples">Examples</NavLink>
                         <NavLink to="/warnings">Warnings</NavLink>
                         <NavDropdown title="Features" activeKey={active} active={active.startsWith("/features")}>
