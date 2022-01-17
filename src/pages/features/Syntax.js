@@ -285,7 +285,7 @@ execute if score $__private__.i __variable__ matches ..10 run function namespace
                     <CodeBlock code={`tellraw @a {"score":{"name":"$__private__.i","objective":"__variable__"},"color":"gold"}
 scoreboard players operation $__private__.i __variable__ += 1 __int__
 execute if score $__private__.i __variable__ matches ..10 run function namespace:__private__/for_loop/17`} language='elixir' />
-                    <Related to='/features/built-in#tostring' text='toString()' />
+                    <Related to='/features/built-in#to_string' text='toString()' />
                 </details>
 
             </div>

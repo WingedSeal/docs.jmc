@@ -56,7 +56,7 @@ const AppNavbar = () => {
                         <NavLink to="/patch-notes">Patch Notes</NavLink>
                         <NavLink to="/examples">Examples</NavLink>
                         <NavLink to="/warnings">Warnings</NavLink>
-                        <NavDropdown title="Features">
+                        <NavDropdown title="Features" activeKey={active} active={active.startsWith("/features")}>
                             <NavItem to="/features">Features</NavItem>
                             <NavDropdown.Divider />
                             <NavItem to="/features/syntax">Syntax</NavItem>
