@@ -43,7 +43,7 @@ const Features = () => {
                 <section id="comment" />
                 <details className='feature'>
                     <summary>Comment</summary>
-                    <p>Add comment to your code using <code className="code">{'# '}</code>(You need space after the hash symbol.) or <code className="code">{'//'}</code>. This will make the compiler ignore every thing from that point to the end of that line. And unlike mcfunction, you are allowed to add inline comments.</p>
+                    <p>Add comment to your code using <code className="code">{'# '}</code><span className="text-danger">(You need space after the hash symbol.)</span> or <code className="code">{'//'}</code>. This will make the compiler ignore every thing from that point to the end of that line. And unlike mcfunction, you are allowed to add inline comments.</p>
                     <p className="fw-bold">Example: </p>
                     <CodeBlock code={`# comment
 function tellraw_message() {
