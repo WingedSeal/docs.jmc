@@ -64,8 +64,8 @@ function tellraw_message() {
                     <Related to="/features/syntax#function_defining" text="Function" />
                 </details>
 
-                <Link to="/features/syntax"><Button variant="outline-dark" className='w-100 fs-3 fw-bold text-indent-2 p-3 mb-3' style={{ borderRadius: '1rem' }}>Custom Syntax</Button></Link>
-                <Link to="/features/built-in"><Button variant="outline-dark" className='w-100 fs-3 fw-bold text-indent-2 p-3 mb-3' style={{ borderRadius: '1rem' }}>Built-in Functions</Button></Link>
+                <Link to="/features/syntax"><Button variant="outline-dark" className='w-100 fs-3 fw-bold p-3 mb-3' style={{ borderRadius: '1rem' }}>Custom Syntax</Button></Link>
+                <Link to="/features/built-in"><Button variant="outline-dark" className='w-100 fs-3 fw-bold p-3 mb-3' style={{ borderRadius: '1rem' }}>Built-in Functions</Button></Link>
             </div>
         </div>
     )

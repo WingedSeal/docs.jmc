@@ -14,7 +14,7 @@ const Syntax = () => {
                 <section id="variable_declarartion" />
                 <details className='feature'>
                     <summary>Variable Declaration</summary>
-                    <p>Initialize a variable, it'll set the variable to 0 if the variable doesn't exist. (Equivalent to <code className='code'>+=0</code></p>
+                    <p>Initialize a variable, it'll set the variable to 0 if the variable doesn't exist. (Equivalent to <code className='code'>+=0</code>)</p>
                     <CodeBlock code={`let $<variable>;`} language='javascript' />
                     <p className="fst-italic">Output: </p>
                     <CodeBlock code={`scoreboard players add $<variable> __variable__ 0`} language='elixir' />
@@ -142,25 +142,150 @@ tellraw @a "SPAM 2"`} language='elixir' />
                 </details>
 
                 <h2>Flow controls</h2>
+
                 <section id="condition" />
                 <details className='feature'>
                     <summary>Condition</summary>
-                    <p>PLACEHOLDER</p>
+                    <p>A condition which can be used in <code className="code">/execute if</code> or other flow controls as <code className="code">{`<condition>`}</code>. And due to minecraft command syntax which uses <code className="code">=</code> instead of <code className="code">==</code>, JMC will treat both as the same thing.</p>
+                    <CodeBlock code={`$<variable> (>=|<=|=|==|>|<) <integer>
+$<variable> (>=|<=|=|==|>|<) <variable> 
+$<variable> (==|=) [<integer>]..[<integer>]`} language='javascript' />
+                    <p className="fw-bold">Example:</p>
+                    <CodeBlock code={`if ($deathCount>5) {
+    say "More than 5 death!"
+}`} language='javascript' />
+                    <Related to='/features/syntax#if_else' text='If/Else' />
                 </details>
+
                 <section id="if_else" />
                 <details className='feature'>
                     <summary>If/Else</summary>
-                    <p>PLACEHOLDER</p>
+                    <p>Simulate programming languages' <code className="code">If</code>, <code className="code">Else</code> using temporary variable and "anonymouse function". So you can write if/else in JavaScript and the compiler will handle the logic for you. But since this is minecraft function, a long chain of if else will slow your code down even if the condition is already met in the first <code className="code">if</code>.</p>
+                    <CodeBlock code={`if (<condition>) { 
+    <command>;
+    <command>;
+    ...
+} else if (<condition>) {
+    <command>;
+    <command>;
+    ...
+} else if (<condition>) {
+    <command>;
+    <command>;
+    ...
+} else {
+    <command>;
+    <command>;
+    ...
+}`} language='javascript' />
+                    <p className="fst-italic">Output:</p>
+                    <code className="code">__load__.mcfunction</code>
+                    <CodeBlock code={`scoreboard players set __tmp__ __variable__ 0
+execute if <condition> run function namespace:__private__/if_else/0
+execute if score __tmp__ __variable__ matches 0 if <condition> run function namespace:__private__/if_else/1
+execute if score __tmp__ __variable__ matches 0 if <condition> run function namespace:__private__/if_else/2
+execute if score __tmp__ __variable__ matches 0 run function namespace:__private__/if_else/3`} language='elixir' />
+                    <code className="code">__private__/if_else/0.mcfunction</code>
+                    <CodeBlock code={`<command>;
+<command>;
+...
+scoreboard players set __tmp__ __variable__ 1`} language='elixir' />
+                    <code className="code">__private__/if_else/1.mcfunction</code>
+                    <CodeBlock code={`<command>;
+<command>;
+...
+scoreboard players set __tmp__ __variable__`} language='elixir' />
+                    <code className="code">__private__/if_else/2.mcfunction</code>
+                    <CodeBlock code={`<command>;
+<command>;
+...
+scoreboard players set __tmp__ __variable__`} language='elixir' />
+                    <code className="code">__private__/if_else/3.mcfunction</code>
+                    <CodeBlock code={`<command>;
+<command>;
+...
+scoreboard players set __tmp__ __variable__`} language='elixir' />
+                    <p className="fw-bold">Example:</p>
+                    <CodeBlock code={`function do_i_have_tag() {
+    if (entity @s[tag=my_tag]) { 
+        say "I have tag!";
+    } else {
+        say "I don't have tag!";
+    }
+}
+execute as @a[team=my_team] run do_i_have_tag();`} language='javascript' startline={113} />
+                    <p className="fst-italic">Output:</p>
+                    <code className="code">__load__.mcfunction</code>
+                    <CodeBlock code={`execute as @a[team=my_team] run function namespace:do_i_have_tag`} language='elixir' />
+                    <code className="code">do_i_have_tag.mcfunction</code>
+                    <CodeBlock code={`scoreboard players set __tmp__ __variable__ 0
+execute if entity @s[tag=my_tag] run function namespace:__private__/if_else/11
+execute if score __tmp__ __variable__ matches 0 run function namespace:__private__/if_else/12`} language='elixir' />
+                    <code className="code">__private__/if_else/11.mcfunction</code>
+                    <CodeBlock code={`say "I have tag!"
+scoreboard players set __tmp__ __variable__ 1`} language='elixir' />
+                    <code className="code">__private__/if_else/12.mcfunction</code>
+                    <CodeBlock code={`say "I don't have tag!"`} language='elixir' />
+                    <Related to='/features/syntax#function_defining' text='Function Defining' />
                 </details>
+
                 <section id="while_loop" />
                 <details className='feature'>
                     <summary>While Loop</summary>
-                    <p>PLACEHOLDER</p>
+                    <p>Simulate programming languages' <code className="code">While</code> loop which continue running commands inside code block until the condition is no longer met with recursion and . By definition, it's possible that <span className="text-danger">you accidentally cause infinite recursion</span> in while loop. Be extremely aware of that.</p>
+                    <CodeBlock code={`while (<condition>) {
+    <command>;
+    <command>;
+    ...
+}`} language='javascript' />
+                    <p className="fs-italic">Output:</p>
+                    <code className="code">__load__.mcfunction</code>
+                    <CodeBlock code={`execute if <condition> run function namespace:__private__/while_loop/0`} language='elixir' />
+                    <code className="code">__private__/while_loop/0.mcfunction</code>
+                    <CodeBlock code={`<command>;
+<command>;
+...
+execute if <condition> run function namespace:__private__/while_loop/0`} language='elixir' />
                 </details>
+
                 <section id="for_loop" />
                 <details className='feature'>
                     <summary>For Loop</summary>
-                    <p>PLACEHOLDER</p>
+                    <p>Simulate Javascript's <code className="code">for</code> loop. It consist of 3 statements.</p>
+                    <ul>
+                        <li><code className="code">{`let $<variable> = <integer>`}</code>is executed (one time) before the execution of the code block. And <span className="text-danger">must be variable assignment with integer and nothing else</span>.</li>
+                        <li><code className="code">{`<condition>`}</code>defines the condition for executing the code block.</li>
+                        <li><code className="code">{`<statement>`}</code>is executed (every time) after the code block has been executed.</li>
+                    </ul>
+                    <p>Note that <code className="code">{`$<variable>`}</code> is similar to local scope. You cannot access it from outside the loop, and if you already declared/assign variable with the same name on global scope, local will take priority in the code block. <span className="text-danger">But if you nested for loop and create a variable with the same name, it'll all count as a single variable.</span></p>
+                    <CodeBlock code={`for (let $<variable> = <integer>; <condition>; <statement>) {
+  <command>;
+  <command>;
+  ...
+}`} language='javascript' />
+                    <p className="fst-italic">Output:</p>
+                    <code className="code">__load__.mcfunction</code>
+                    <CodeBlock code={`scoreboard players set $__private__.<variable> __variable__ <integer>
+execute if <condition> run function namespace:__private__/for_loop/0`} language='elixir' />
+                    <code className="code">__private__/for_loop/0.mcfunction</code>
+                    <CodeBlock code={`<command>;
+<command>;
+...
+<statement>
+execute if <condition> run function namespace:__private__/for_loop/0`} language='elixir' />
+                    <p className="fw-bold">Example:</p>
+                    <CodeBlock code={`for (let $i=1; $i<=10; $i++) {
+    tellraw @a $i.toString(color="gold");
+}`} language='javascript' startline={71} />
+                    <p className="fst-italic">Output:</p>
+                    <code className="code">__load__.mcfunction</code>
+                    <CodeBlock code={`scoreboard players set $__private__.i __variable__ 1
+execute if score $__private__.i __variable__ matches ..10 run function namespace:__private__/for_loop/17`} language='elixir' />
+                    <code className="code">__private__/for_loop/17.mcfunction</code>
+                    <CodeBlock code={`tellraw @a {"score":{"name":"$__private__.i","objective":"__variable__"},"color":"gold"}
+scoreboard players operation $__private__.i __variable__ += 1 __int__
+execute if score $__private__.i __variable__ matches ..10 run function namespace:__private__/for_loop/17`} language='elixir' />
+                    <Related to='/features/built-in#tostring' text='toString()' />
                 </details>
 
             </div>
