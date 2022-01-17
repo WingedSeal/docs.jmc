@@ -15,8 +15,16 @@ const BuiltInFunctions = () => {
                     <summary>toString()</summary>
                     <p>Turn variable into json for display (tellraw, title, etc.)</p>
                     <CodeBlock code={`$<variable>.toString(key=value, key=value, ...)`} language='python' />
-                    <p className="fst-italic">Output: </p>
+                    <p className="fst-italic">Output:</p>
                     <CodeBlock code={`{"score":{"name":"$<variable>","objective":"__variable__"},"key":value, "key":value, ...}`} language='json' />
+                    <p className="fw-bold">Example:</p>
+                    <CodeBlock code={`$deathCount.toString(color="red", bold=true)`} language='python' />
+                    <p className="fst-italic">Output:</p>
+                    <CodeBlock code={`{"score":{"name":"$deathCount","objective":"__variable__"},"color":"red","bold":true}`} language='json' />
+                    <p className="fw-bold">Example:</p>
+                    <CodeBlock code={`$deathCount.toString()`} language='python' />
+                    <p className="fst-italic">Output:</p>
+                    <CodeBlock code={`{"score":{"name":"$deathCount","objective":"__variable__"}}`} language='json' />
                 </details>
             </div>
         </div>
