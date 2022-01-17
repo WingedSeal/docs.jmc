@@ -34,6 +34,7 @@ const AppNavbar = () => {
         setHeight(ref.current.clientHeight)
     }, [])
 
+
     useEffect(() => {
         setActive(location.pathname)
     }, [location.pathname])
@@ -59,6 +60,7 @@ const AppNavbar = () => {
                             <NavItem to="/features">Features</NavItem>
                             <NavDropdown.Divider />
                             <NavItem to="/features/syntax">Syntax</NavItem>
+                            <NavItem to="/features/built-in">Built-in Function</NavItem>
                         </NavDropdown>
                     </Nav>
                 </Navbar.Collapse>

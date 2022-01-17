@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import CodeBlock from '../components/CodeBlock'
 import { ListGroup, Badge, Button, Collapse, Card } from 'react-bootstrap'
-import './../App.scss'
 
 
 // d-flex justify-content-between align-items-start

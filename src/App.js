@@ -5,8 +5,9 @@ import GettingStarted from './pages/GettingStarted';
 import PatchNotes from './pages/PatchNotes';
 import Examples from './pages/Examples';
 import Warnings from './pages/Warnings'
-import Features from './pages/Features';
+import Features from './pages/features/Features';
 import Syntax from './pages/features/Syntax';
+import BuiltInFunctions from './pages/features/BuiltInFunctions';
 import React from 'react'
 //import 'bootstrap/dist/css/bootstrap.css';
 import { HashRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
@@ -26,6 +27,7 @@ function App() {
           <Route path="features" >
             <Route path="" element={<Features />} />
             <Route path="syntax" element={<Syntax />} />
+            <Route path="built-in" element={<BuiltInFunctions />} />
           </Route>
 
           <Route path="/*" element={<Navigate to="/" />} />
