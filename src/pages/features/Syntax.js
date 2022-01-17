@@ -146,7 +146,7 @@ tellraw @a "SPAM 2"`} language='elixir' />
                 <section id="condition" />
                 <details className='feature'>
                     <summary>Condition</summary>
-                    <p>A condition which can be used in <code className="code">/execute if</code> or other flow controls as <code className="code">{`<condition>`}</code>. And due to minecraft command syntax which uses <code className="code">=</code> instead of <code className="code">==</code>, JMC will treat both as the same thing.</p>
+                    <p>A condition which can be used in flow controls as <code className="code">{`<condition>`}</code>. And due to minecraft command syntax which uses <code className="code">=</code> instead of <code className="code">==</code>, JMC will treat both as the same thing.</p>
                     <CodeBlock code={`$<variable> (>=|<=|=|==|>|<) <integer>
 $<variable> (>=|<=|=|==|>|<) <variable> 
 $<variable> (==|=) [<integer>]..[<integer>]`} language='javascript' />
