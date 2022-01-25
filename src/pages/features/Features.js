@@ -32,12 +32,14 @@ const Features = () => {
                 <details className='feature'>
                     <summary>Import</summary>
                     <p>As we all know, putting everything into a single file isn't always the brightest idea.</p>
-                    <p>The way to solve this using <code className="code">@import</code> which literally move context of another jmc file to the top of the main file.</p>
-                    <p>For those who are familiar with programming, unlike normal programming language, importing <span className='fw-bold'>doesn't</span> add extra namespace to content</p>
+                    <p>The way to solve this is by using <code className="code">@import</code> which literally move context of another jmc file to the main file where it is imported.</p>
+                    <p>For those who are familiar with programming, unlike normal programming language, <span className="text-danger">importing <span className='fw-bold'>doesn't</span> add extra namespace to content</span>.</p>
                     <CodeBlock code={`@import '[<directory>/]<file_name>';`} language='javascript' />
-                    <p>Will copy the context inside <code className="code">{'[<directory>/]<file_name>.jmc'}</code> to main <code className="code">.jmc</code>.</p>
+                    <p>Will copy the context inside <code className="code">{'[<directory>/]<file_name>.jmc'}</code> to exact the main <code className="code">.jmc</code></p>
                     <p className="fw-bold">Example: </p>
-                    <CodeBlock code={`@import 'lib/math';`} language='javascript' />
+                    <CodeBlock code={`say "command here";
+@import 'lib/math';
+say "command here";`} language='javascript' />
                 </details>
 
                 <section id="comment" />

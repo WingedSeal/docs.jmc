@@ -5,7 +5,7 @@ const Warnings = () => {
     return (
         <div>
             <h1 className="fs-1 text-center text-md-start m-5 mb-0 fw-bolder">Warnings</h1>
-            <h2 className="fs-2 ms-5 mb-5 text-indent-2">List of stuffs you should'nt mess with.</h2>
+            <h2 className="fs-2 ms-5 mb-5 text-indent-2">List of stuffs you shouldn't mess with.</h2>
             <div className="paragraphs">
                 <ul>
                     <li>JMC does <span className="text-danger">not</span> have any syntax checking, which mean any syntax error will result in broken datapacks. Make sure you don't miss any semicolon <code className="code">;</code>.</li>
@@ -41,7 +41,8 @@ tellraw @a $i.toString();`} language='javascript' /><div className='fst-italic'>
                             <li>Players in <code className="code">__variable__</code>
                                 <ol>
                                     <li><code className="code">__tmp__</code></li>
-                                    <li>Anything starting with <code className="code">__variable__</code></li>
+                                    <li><code className="code">__logic__</code></li>
+                                    <li>Anything starting with <code className="code">$__private__</code></li>
                                 </ol></li>
                             <li>Directories
                                 <ol>
