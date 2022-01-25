@@ -60,7 +60,7 @@ details.feature {
     @extend .p-3;
     @extend .mb-3;
 
-    summary {
+    &>summary {
         transition: 0.3s ease-in-out;
         overflow-y: scroll;
         scrollbar-width: none;
@@ -93,7 +93,7 @@ details.feature {
             @extend .fs-5;
         }
 
-        summary {
+        &>summary {
             @extend .text-indent-2;
             @extend .pb-2;
             @extend .mb-2;
@@ -127,5 +127,28 @@ details.not-done {
 
     p {
         @extend .fst-italic;
+    }
+}
+
+details.drop_down {
+    &>summary {
+        background-color: #eeeeee;
+        border: none;
+        width: min-content;
+        white-space: nowrap;
+        box-shadow: 0.1rem 0.1rem 0.2rem #bbbbbb;
+        cursor: pointer;
+        @extend .fs-5;
+        @extend .px-3;
+        @extend .py-1;
+    }
+
+    ol>li {
+        background-color: #eeeeee;
+        @extend .px-2;
+        @extend .m-2;
+        width: min-content;
+        white-space: nowrap;
+        box-shadow: 0.1rem 0.1rem 0.2rem #bbbbbb;
     }
 }

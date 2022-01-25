@@ -111,19 +111,20 @@ tellraw @a "SPAM 2"`} language='elixir' />
                 <section id="function_grouping" />
                 <details className='feature'>
                     <summary>Function Grouping</summary>
-                    <p>It simply add extra layers of directory/namespace to any function and function only inside it. Even though syntax use the word "class", <span className="text-danger">it is not a class</span>.</p>
+                    <p>It simply add extra layers of directory/namespace to any function/new (Doesn't affect variable) inside it. Even though syntax use the word "class", <span className="text-danger">it is not a class</span>.</p>
                     <CodeBlock code={`class [<directory>.]<folder_name> {
-    function [<directory>/]<file_name>() {
+    function [<directory>.]<file_name>() {
         <command>;
         <command>;
         ...
     }
-    function [<directory>/]<file_name>() {
+    function [<directory>.]<file_name>() {
         <command>;
         <command>;
         ...
     }
-    ...
+
+    new <file_type>([<directory>.]<file_name>) <JSON content>
 
     <command>;
     <command>;
@@ -138,7 +139,10 @@ tellraw @a "SPAM 2"`} language='elixir' />
                     <CodeBlock code={`<command>
 <command>
 ...`} language='elixir' />
+                    <code className="code">{`namespace/<file_type>/[<directory>/]<folder_name>/[<directory>/]<file_name>.json`}</code>
+                    <CodeBlock code={`<JSON content>`} language='elixir' />
                     <Related to="/features/syntax#function_defining" text='Function Defining' />
+                    <Related to="/features/syntax#new" text='New keyword' />
                 </details>
 
                 <h2>Flow controls</h2>
@@ -286,6 +290,57 @@ execute if score $__private__.i __variable__ matches ..10 run function namespace
 scoreboard players operation $__private__.i __variable__ += 1 __int__
 execute if score $__private__.i __variable__ matches ..10 run function namespace:__private__/for_loop/17`} language='elixir' />
                     <Related to='/features/built-in#to_string' text='toString()' />
+                </details>
+
+                <h2>Creating JSON file</h2>
+
+                <section id="new" />
+                <details className='feature'>
+                    <summary>New</summary>
+                    <p>Generate a formatted json file at desired directory under the type.</p>
+                    <details className='drop_down mb-3 ms-2'>
+                        <summary>Available type examples</summary>
+                        <ol>
+                            <li>advancements</li>
+                            <li>item_modifiers</li>
+                            <li>loot_tables</li>
+                            <li>predicates</li>
+                            <li>recipes</li>
+                            <li>structures</li>
+                            <li>tags.blocks</li>
+                            <li>tags.entity_types</li>
+                            <li>tags.fluids</li>
+                            <li>tags.functions</li>
+                            <li>tags.game_events</li>
+                            <li>tags.items</li>
+                        </ol>
+                    </details>
+                    <CodeBlock code={`new <file_type>([<directory>.]<file_name>) <JSON content>`} language='javascript' />
+                    <p className="fst-italic">Output:</p>
+                    <code className="code">{`namespace/<file_type>/[<directory>/]<file_name>.json`}</code>
+                    <CodeBlock code={`<JSON content>`} language='elixir' />
+                    <p className="fw-bold">Example:</p>
+                    <CodeBlock code={`new advancements(myDatapack.firstJoin) {
+    "criteria": {
+        "requirement": {
+          "trigger": "minecraft:tick"
+        }
+    },
+    "rewards": {"function": "namespace:mydatapack/rejoin/first_join"}                        
+}`} language='javascript' />
+                    <p className="fst-italic">Output:</p>
+                    <code className="code">namespace/advancements/mydatapack/firstjoin.json</code>
+                    <CodeBlock code={`{
+    "criteria": {
+        "requirement": {
+          "trigger": "minecraft:tick"
+        }
+    },
+    "rewards": {
+        "function": "namespace:mydatapack/rejoin/first_join"
+    }                        
+}`} language='elixir' />
+                    <Related to="/features/syntax#function_grouping" text='Function Grouping (Class)' />
                 </details>
 
             </div>
