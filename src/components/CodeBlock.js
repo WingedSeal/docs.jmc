@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { a11yDark } from 'react-syntax-highlighter/dist/esm/styles/hljs/';
+import { AiOutlineCopy } from 'react-icons/ai'
 
 
 const CodeBlock = (props) => {
@@ -14,7 +15,7 @@ const CodeBlock = (props) => {
                 {props.code}
             </SyntaxHighlighter>
             <CopyToClipboard text={props.code}>
-                <button className="copy-button">&#128190;</button>
+                <button className="copy-button"><AiOutlineCopy /></button>
             </CopyToClipboard>
 
         </div>

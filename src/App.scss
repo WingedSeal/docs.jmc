@@ -162,10 +162,11 @@ details.drop_down {
         right: 0.2em;
         padding: 0;
         @extend .fs-5;
-        background-color: rgba(22, 22, 22, 0.479);
+        background-color: rgba(0, 0, 0, 0.6);
         border: none;
-        border-radius: 0.2rem;
+        border-radius: 0.4rem;
         transition: 0.1s ease-out;
+        color: rgba(255, 255, 255, 0.7);
 
         &:hover {
             transform: translateY(-5%);
@@ -173,7 +174,7 @@ details.drop_down {
 
         &:active {
             transform: translateY(2%);
-            background-color: rgba(22, 22, 22, 0.945);
+            background-color: rgb(0, 0, 0);
         }
     }
 }
