@@ -4,20 +4,20 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import { Button } from 'react-bootstrap';
 import { a11yDark } from 'react-syntax-highlighter/dist/esm/styles/hljs/';
 
 
 const CodeBlock = (props) => {
     return (
-        <>
+        <div className="code-block">
             <SyntaxHighlighter language={props.language} style={a11yDark} className="rounded-3 mb-1" showLineNumbers startingLineNumber={props.startline}>
                 {props.code}
             </SyntaxHighlighter>
             <CopyToClipboard text={props.code}>
-                <Button className="btn btn-secondary">Copy</Button>
+                <button className="copy-button">&#128190;</button>
             </CopyToClipboard>
-        </>
+
+        </div>
 
     )
 }
