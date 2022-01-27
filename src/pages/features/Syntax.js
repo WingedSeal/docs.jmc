@@ -11,7 +11,7 @@ const Syntax = () => {
             <div className="paragraphs">
                 <h2>Variable</h2>
 
-                <section id="variable_declarartion" />
+                <section id="variable_declaration" />
                 <details className='feature'>
                     <summary>Variable Declaration</summary>
                     <p>Initialize a variable, it'll set the variable to 0 if the variable doesn't exist. (Equivalent to <code className='code'>+=0</code>)</p>

@@ -12,7 +12,7 @@ const CodeBlock = (props) => {
     return (
         <div className="code-block">
             <SyntaxHighlighter language={props.language} style={a11yDark} className="rounded-3 mb-1" showLineNumbers startingLineNumber={props.startline}>
-                {props.code}
+                {props.code + `     `}
             </SyntaxHighlighter>
             <CopyToClipboard text={props.code}>
                 <button className="copy-button"><AiOutlineCopy /></button>
