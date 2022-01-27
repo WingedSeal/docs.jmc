@@ -42,13 +42,13 @@ const GettingStarted = () => {
                             <div id="move_main_py" className='m-2'>
                                 <p>Create a <code className='code'>.py</code> file at the desired directory then insert the following code (The file name cannot be <code className='code'>main.py</code>)</p>
                                 <CodeBlock code={`import sys
-sys.path.append('PATH_TO_FOLDER_HERE')  # noqa
+sys.path.append(r'PATH_TO_FOLDER_HERE')  # noqa
 import main  # type: ignore
 main.main()`} language='python' />
                                 <p>And replace <code className='code'>PATH_TO_FOLDER_HERE</code> with pure window path to <code className='code'>main.py</code>'s parent directory you downloaded. For example, if my main.py's path is <code className="code">D:/Users/User/Documents/GitHub/JMC/main.py</code></p>
                                 <code className="code">run.py</code>
                                 <CodeBlock code={`import sys
-sys.path.append('D:/Users/User/Documents/GitHub/JMC')  # noqa
+sys.path.append(r'D:/Users/User/Documents/GitHub/JMC')  # noqa
 import main  # type: ignore
 main.main()`} language='python' />
                             </div>
