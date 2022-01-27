@@ -161,6 +161,27 @@ $<variable> (==|=) [<integer>]..[<integer>]`} language='javascript' />
                     <Related to='/features/syntax#if_else' text='If/Else' />
                 </details>
 
+                <section id="logic_gate" />
+                <details className='feature'>
+                    <summary>Logic Gate</summary>
+                    <p>In <code className="code">{`<condition>`}</code>. You are allowed to use some of logic gates.</p>
+                    <details className='drop_down mb-3 ms-2'>
+                        <summary>All available logic gate in order</summary>
+                        <ol>
+                            <li><code className="code">()</code></li>
+                            <li><code className="code">||</code> (or)</li>
+                            <li><code className="code">&&</code> (and)</li>
+                            <li><code className="code">!</code> (not)</li>
+                        </ol>
+                    </details>
+                    <p className="fw-bold">Example:</p>
+                    <CodeBlock code={`if (entity @s[type=skeleton] || (entity @s[type=zombie] && $deathCount>5)) {
+    say "I'm either a zombie with more than 5 deaths or a skeleton."
+}`} language='javascript' />
+                    <Related to='/features/syntax#if_else' text='If/Else' />
+                    <Related to='/features/syntax#condition' text='Condition' />
+                </details>
+
                 <section id="if_else" />
                 <details className='feature'>
                     <summary>If/Else</summary>
@@ -231,6 +252,7 @@ scoreboard players set __tmp__ __variable__ 1`} language='elixir' />
                     <code className="code">__private__/if_else/12.mcfunction</code>
                     <CodeBlock code={`say "I don't have tag!"`} language='elixir' />
                     <Related to='/features/syntax#function_defining' text='Function Defining' />
+                    <Related to='/features/syntax#condition' text='Condition' />
                 </details>
 
                 <section id="while_loop" />
@@ -250,6 +272,7 @@ scoreboard players set __tmp__ __variable__ 1`} language='elixir' />
 <command>;
 ...
 execute if <condition> run function namespace:__private__/while_loop/0`} language='elixir' />
+                    <Related to='/features/syntax#condition' text='Condition' />
                 </details>
 
                 <section id="for_loop" />
@@ -290,6 +313,7 @@ execute if score $__private__.i __variable__ matches ..10 run function namespace
 scoreboard players operation $__private__.i __variable__ += 1 __int__
 execute if score $__private__.i __variable__ matches ..10 run function namespace:__private__/for_loop/17`} language='elixir' />
                     <Related to='/features/built-in#to_string' text='toString()' />
+                    <Related to='/features/syntax#condition' text='Condition' />
                 </details>
 
                 <h2>Creating JSON file</h2>
@@ -341,6 +365,7 @@ execute if score $__private__.i __variable__ matches ..10 run function namespace
     }                        
 }`} language='elixir' />
                     <Related to="/features/syntax#function_grouping" text='Function Grouping (Class)' />
+                    <Related to='/features/syntax#condition' text='Condition' />
                 </details>
 
             </div>
