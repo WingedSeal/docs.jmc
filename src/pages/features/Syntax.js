@@ -300,7 +300,7 @@ execute if <condition> run function namespace:__private__/while_loop/0`} languag
                 </details>
 
                 <section id="do_while_loop" />
-                <details className='feature not-done'>
+                <details className='feature'>
                     <summary>Do While Loop</summary>
                     <p>Similar to while loop, but run the function for the first time before checking for condition. (<span className='text-danger'>Semicolons <code className="code">;</code> is required.</span>)</p>
                     <CodeBlock code={`do {
