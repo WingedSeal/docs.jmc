@@ -34,7 +34,7 @@ const BuiltInFunctions = () => {
                         <CodeBlock code={`{"score":{"name":"$deathCount","objective":"__variable__"}}`} language='json' />
                     </Feature>
 
-                    <Feature id="rightclick_setup" summary="RightClick.setup()" keywords="detect">
+                    <Feature id="rightclick_setup" summary="RightClick.setup()" keywords="detect carrot">
                         <p>Setup basic carrot_on_a_stick right click detection with selected item detection. You can map any id to a series of commands. When any player right click with the item, the command matching the id will be run. (ID can range from 0 to Java's long MAX_VALUE (9,223,372,036,854,775,807) <span className="text-danger">while ID 0 being default which will be run if player right click with *any* Carrot on a stick that doesn't have ID.</span>)</p>
                         <p>You are allowed to setup multiple times with different id_name but that isn't recommended due to optimization issue.</p>
                         <CodeBlock code={`RightClick.setup(<id_name>, {
