@@ -48,7 +48,7 @@ const Syntax = () => {
                         <CodeBlock code={`scoreboard players operations <target> __variable__ <operations> <integer> __int__`} language='elixir' />
                     </Feature>
 
-                    <Feature id="incrementation" summary="Incrementation">
+                    <Feature id="incrementation" summary="Incrementation" keywords="decrementation ++ --">
                         <ul>
                             <li><code className="code">{`$<variable>++`}</code> is <code className="code">{`$<variable> += 1`}</code></li>
                             <li><code className="code">{`$<variable>--`}</code> is <code className="code">{`$<variable> -= 1`}</code></li>
