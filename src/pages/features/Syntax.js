@@ -16,7 +16,7 @@ const Syntax = () => {
                 <h2>Variable</h2>
                 <SearchContext.Provider value={searchValue}>
 
-                    <Feature id="variable_declaration" summary="Variable Declaration">
+                    <Feature id="variable_declaration" summary="Variable Declaration" keywords="declare">
                         <p>Initialize a variable, it'll set the variable to 0 if the variable doesn't exist. (Equivalent to <code className='code'>+=0</code>)</p>
                         <CodeBlock code={`let $<variable>;`} language='javascript' />
                         <p className="fst-italic">Output: </p>
@@ -29,7 +29,7 @@ const Syntax = () => {
                         <CodeBlock code={`$<variable> = <integer>;`} language='javascript' />
                         <p className="fst-italic">Output: </p>
                         <CodeBlock code={`scoreboard players set $<variable> __variable__ <integer>`} language='elixir' />
-                        <Related setSearchValue={setSearchValue} to="/features/syntax#variable_declarartion" text="Variable Declaration" />
+                        <Related setSearchValue={setSearchValue} to="/features/syntax#variable_declaration" text="Variable Declaration" />
                     </Feature>
 
                     <Feature id="variable_operation" summary="Variable Operations">
@@ -58,7 +58,7 @@ const Syntax = () => {
 
                     <h2>Function</h2>
 
-                    <Feature id="function_defining" summary="Function Defining">
+                    <Feature id="function_defining" summary="Function Defining" keywords="define">
                         <p>Say goodbye to creating a new file for every single function, introducing Function Defining. This feature allows you to define as many function as you want in a single file. But for now, <span className='text-danger'>arrow function does not work</span> and <span className='text-danger'>you can't create parameter</span>. Any capital letter (which is invalid for minecraft function name) will be automatically be turn into lowercase, which means it is not case-sensitive. For example, <code className="code">deathMessage</code> is the same as <code className="code">deathmessage</code>.</p>
                         <CodeBlock code={`function [<directory>.]<file_name>() {
     <command>;
@@ -96,7 +96,7 @@ tellraw @a "SPAM 2"`} language='elixir' />
                         <CodeBlock code={`execute as @a run function namespace:utils/chat/spamchat`} language='elixir' />
                     </Feature>
 
-                    <Feature id="anonymous_function" summary="Anonymous Function">
+                    <Feature id="anonymous_function" summary="Anonymous Function" keywords="arrow">
                         <p>The archnemesis of every coder is, indeed, naming things. Why bother creating a whole new function just to run a few commands as an entity. You are allowed to run multiple command in an execute chain.</p>
                         <CodeBlock code={`execute ... run {
     <command>;
@@ -124,7 +124,7 @@ tellraw @a "SPAM 2"`} language='elixir' />
 ...`} language='javascript' />
                     </Feature>
 
-                    <Feature id="function_grouping" summary="Function Grouping">
+                    <Feature id="function_grouping" summary="Function Grouping" keywords="class">
                         <p>It simply add extra layers of directory/namespace to any function/new (Doesn't affect variable) inside it. Even though syntax use the word "class", <span className="text-danger">it is not a class</span>.</p>
                         <CodeBlock code={`class [<directory>.]<folder_name> {
     function [<directory>.]<file_name>() {
@@ -173,7 +173,7 @@ $<variable> (==|=) [<integer>]..[<integer>]`} language='javascript' />
                         <Related setSearchValue={setSearchValue} to='/features/syntax#if_else' text='If/Else' />
                     </Feature>
 
-                    <Feature id="logic_gate" summary="Logic Gate">
+                    <Feature id="logic_gate" summary="Logic Gate" keywords="and or not">
                         <p>In <code className="code">{`<condition>`}</code>. You are allowed to use some of logic gates.</p>
                         <details className='drop_down mb-3 ms-2'>
                             <summary>All available logic gate in order</summary>
@@ -341,7 +341,7 @@ execute if score $__private__.i __variable__ matches ..10 run function namespace
 
                     <h2>Creating JSON file</h2>
 
-                    <Feature id="new" summary="New">
+                    <Feature id="new" summary="New" keywords="json advancements item modifiers loot tables predicates structures tags world gen">
                         <p>Generate a formatted json file at desired directory under the type.</p>
                         <details className='drop_down mb-3 ms-2'>
                             <summary>Available type examples</summary>

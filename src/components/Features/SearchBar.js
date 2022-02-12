@@ -9,12 +9,20 @@ const SearchBar = ({ setSearchValue }) => {
         <div className="search-box">
             <div className="btn" onClick={(e) => {
                 setSearchValue(inputRef.current.value)
+                const features = document.querySelectorAll(".feature");
+                features.forEach((feature) => {
+                    feature.removeAttribute("open");
+                });
             }}>
                 <FontAwesomeIcon icon={faSearch} className="icon" />
             </div>
             <input ref={inputRef} className='input' type="text" placeholder="Search..." onKeyDown={(e) => {
                 if (e.key === 'Enter') {
                     setSearchValue(e.target.value);
+                    const features = document.querySelectorAll(".feature");
+                    features.forEach((feature) => {
+                        feature.removeAttribute("open");
+                    });
                 }
             }} />
             <div className="clear" onClick={(e) => {

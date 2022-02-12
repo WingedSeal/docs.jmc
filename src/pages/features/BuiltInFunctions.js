@@ -19,7 +19,7 @@ const BuiltInFunctions = () => {
             <div className="paragraphs">
                 <SearchContext.Provider value={searchValue}>
 
-                    <Feature id="to_string" summary="toString()">
+                    <Feature id="to_string" summary="toString()" keywords="tellraw json">
                         <p>Turn variable into json for display (tellraw, title, etc.)</p>
                         <CodeBlock code={`$<variable>.toString(key=value, key=value, ...)`} language='python' />
                         <p className="fst-italic">Output:</p>
@@ -34,7 +34,7 @@ const BuiltInFunctions = () => {
                         <CodeBlock code={`{"score":{"name":"$deathCount","objective":"__variable__"}}`} language='json' />
                     </Feature>
 
-                    <Feature id="rightclick_setup" summary="RightClick.setup()">
+                    <Feature id="rightclick_setup" summary="RightClick.setup()" keywords="detect">
                         <p>Setup basic carrot_on_a_stick right click detection with selected item detection. You can map any id to a series of commands. When any player right click with the item, the command matching the id will be run. (ID can range from 0 to Java's long MAX_VALUE (9,223,372,036,854,775,807) <span className="text-danger">while ID 0 being default which will be run if player right click with *any* Carrot on a stick that doesn't have ID.</span>)</p>
                         <p>You are allowed to setup multiple times with different id_name but that isn't recommended due to optimization issue.</p>
                         <CodeBlock code={`RightClick.setup(<id_name>, {
@@ -143,7 +143,7 @@ tellraw @s [ { "text": "You have right clicked ", "color": "gold" }, {"score":{"
                         <Related to="/features/built-in#to_string" text="toString()" />
                     </Feature>
 
-                    <Feature id="math_sqrt" summary="Math.sqrt()">
+                    <Feature id="math_sqrt" summary="Math.sqrt()" keywords="square root">
                         <p>Use <a href="https://en.wikipedia.org/wiki/Newton%27s_method">Newton–Raphson method</a> to perfectly calculate square root of any integer. And, like normal minecraft operators, this function will <a href='https://en.wikipedia.org/wiki/Floor_and_ceiling_functions'>floor</a> the result.</p>
                         <p>Don't get overwhelmed by how this function works, all you need to know is that it will calculate a square root of input variable and put put the result in output variable.</p>
                         <p>To get decimal places, simply multiply input by 10,000 before calling Math.sqrt then the last 2 digits (<code className='code'>sqrt(10000)=100</code>) of the output will be decimal places</p>
@@ -253,7 +253,7 @@ tellraw @a "5^2=25"`} language='elixir' />
                         <Related to="/features/built-in#player_rejoin" text="Player.rejoin()" />
                     </Feature>
 
-                    <Feature id="player_rejoin" summary="Player.rejoin()">
+                    <Feature id="player_rejoin" summary="Player.rejoin()" keywords="leave">
                         <p>Run commands inside when a player leave a world then join back. <span className='text-danger'>Will not run when player join the world for the first time.</span></p>
                         <CodeBlock code={`Player.rejoin(()=>{
     <command>;
