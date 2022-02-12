@@ -32,7 +32,7 @@ const Syntax = () => {
                         <Related setSearchValue={setSearchValue} to="/features/syntax#variable_declaration" text="Variable Declaration" />
                     </Feature>
 
-                    <Feature id="variable_operation" summary="Variable Operations">
+                    <Feature id="variable_operation" summary="Variable Operations" keywords='operators'>
                         <p>Does scoreboard operations, with 6 available operations.</p>
                         <ul>
                             <li><code className="code">=</code> Assign: Set target's score to source's score (for variable)</li>
