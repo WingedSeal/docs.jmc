@@ -123,6 +123,10 @@ details.not-done {
     summary {
         @extend .text-muted;
         @extend .text-decoration-line-through;
+
+        &::after {
+            content: " (Work In Progress...)";
+        }
     }
 
     p {

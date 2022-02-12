@@ -103,9 +103,33 @@ tellraw @a "SPAM 2"`} language='elixir' />
                 </details>
 
                 <section id="anonymous_function" />
-                <details className='not-done feature'>
+                <details className='feature'>
                     <summary>Anonymous Function</summary>
-                    <p>Work In Progress</p>
+                    <p>The archnemesis of every coder is, indeed, naming things. Why bother creating a whole new function just to run a few commands as an entity. You are allowed to run multiple command in an execute chain.</p>
+                    <CodeBlock code={`execute ... run {
+    <command>;
+    <command>;
+    ...
+}`} language='javascript' />
+                    <p className="fst-italic">Output: </p>
+                    <code className="code">__load__.mcfunction</code>
+                    <CodeBlock code={`execute ... run function namespace:__private__/anonymous/0`} language='elixir' />
+                    <code className="code">__private__/if_else/0.mcfunction</code>
+                    <CodeBlock code={`<command>;
+<command>;
+...`} language='javascript' />
+                    <p className="fst-bold">Example: </p>
+                    <CodeBlock code={`execute as @a at @s run {
+    tp @s ~ ~1 ~;
+    playsound entity.wither.spawn master @s ~ ~ ~ 1 2;
+}`} language='javascript' />
+                    <p className="fst-italic">Output: </p>
+                    <code className="code">__load__.mcfunction</code>
+                    <CodeBlock code={`execute ... run function namespace:__private__/anonymous/0`} language='elixir' />
+                    <code className="code">__private__/if_else/0.mcfunction</code>
+                    <CodeBlock code={`<command>;
+<command>;
+...`} language='javascript' />
                 </details>
 
                 <section id="function_grouping" />
@@ -272,6 +296,27 @@ scoreboard players set __tmp__ __variable__ 1`} language='elixir' />
 <command>;
 ...
 execute if <condition> run function namespace:__private__/while_loop/0`} language='elixir' />
+                    <Related to='/features/syntax#condition' text='Condition' />
+                </details>
+
+                <section id="do_while_loop" />
+                <details className='feature not-done'>
+                    <summary>Do While Loop</summary>
+                    <p>Similar to while loop, but run the function for the first time before checking for condition. (<span className='text-danger'>Semicolons <code className="code">;</code> is required.</span>)</p>
+                    <CodeBlock code={`do {
+    <command>;
+    <command>;
+    ...
+} while (<condition>);`} language='javascript' />
+                    <p className="fs-italic">Output:</p>
+                    <code className="code">__load__.mcfunction</code>
+                    <CodeBlock code={`function namespace:__private__/do_while_loop/0`} language='elixir' />
+                    <code className="code">__private__/do_while_loop/0.mcfunction</code>
+                    <CodeBlock code={`<command>;
+<command>;
+...
+execute if <condition> run function namespace:__private__/while_loop/0`} language='elixir' />
+                    <Related to='/features/syntax#while_loop' text='While Loop' />
                     <Related to='/features/syntax#condition' text='Condition' />
                 </details>
 

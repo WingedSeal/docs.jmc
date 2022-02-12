@@ -48,7 +48,7 @@ const BuiltInFunctions = () => {
         ...
     },
     ...
-})`} language='javascript' />
+});`} language='javascript' />
                     <p className="fst-italic">Output:</p>
                     <code className="code">__load__.mcfunction</code>
                     <CodeBlock code={`scoreboard objectives add __rc__ minecraft.used:minecraft.carrot_on_a_stick`} language='elixir' />
