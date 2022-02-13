@@ -145,7 +145,7 @@ tellraw @s [ { "text": "You have right clicked ", "color": "gold" }, {"score":{"
 
                     <Feature id="math_sqrt" summary="Math.sqrt()" keywords="square root">
                         <p>Use <a href="https://en.wikipedia.org/wiki/Newton%27s_method">Newton–Raphson method</a> to perfectly calculate square root of any integer. And, like normal minecraft operators, this function will <a href='https://en.wikipedia.org/wiki/Floor_and_ceiling_functions'>floor</a> the result.</p>
-                        <p>Don't get overwhelmed by how this function works, all you need to know is that it will calculate a square root of input variable and put put the result in output variable.</p>
+                        <p>Don't get overwhelmed by how this function works, all you need to know is that it will calculate a square root of input variable and put the result in output variable.</p>
                         <p>To get decimal places, simply multiply input by 10,000 before calling Math.sqrt then the last 2 digits (<code className='code'>sqrt(10000)=100</code>) of the output will be decimal places</p>
                         <CodeBlock code={`$<output: variable> = Math.sqrt($<input: variable>);`} language='javascript' />
                         <p className="fst-italic">Output:</p>
@@ -274,6 +274,89 @@ function namespace:__private__/player_rejoin/0`} language='elixir' />
 ...`} language='elixir' />
 
                         <Related to="/features/built-in#player_first_join" text="Player.firstJoin()" />
+                    </Feature>
+
+                    <Feature id="trigger_setup" summary="Trigger.setup()" keywords="permissions perms scoreboard" wip>
+                        <p>Setup a trigger system for custom command or allowing players with no permission to click a text button. <span className="text-danger">(<code className="code">{`<objective>`}</code> must be no more than 16 characters long. ID can range from 1 to Java's long MAX_VALUE (9,223,372,036,854,775,807).) </span></p>
+                        <p>You if you are not making a custom command. It is recommended that you only use 1 objective (Call setup once) for optimization.</p>
+                        <p>There are a lot of optimization that might cause headache when reading compiled code. All it actually does in the end is that it create a trigger system which you can call using <code className="code">{`/trigger <objective> set <id>`}</code>. Or to call <code className="code">{`<id1>`}</code>, just <code className="code">{`/trigger <objective>`}</code> will do. (In case you don't know, you can use <code className="code">/trigger</code> command without <span className="fst-italic">op</span>.)</p>
+
+                        <CodeBlock code={`Trigger.setup(<objective>, {                 
+    <id1>: ()=>{
+        <command>;
+        <command>;
+        ...
+    },
+    <id2>: ()=>{
+        <command>;
+        <command>;
+        ...
+    },
+    ...
+});`} language='javascript' />
+                        <p className="fst-italic">Output:</p>
+                        <code className="code">__load__.mcfunction</code>
+                        <CodeBlock code={`scoreboard objectives add <objective> trigger
+scoreboard players enable @a <objective>`} language='elixir' />
+                        <code className="code">__tick__.mcfunction</code>
+                        <CodeBlock code={`function namespace:__private__/trigger/main`} language='elixir' />
+                        <code className="code">__private__/trigger/main.mcfunction</code>
+                        <CodeBlock code={`execute as @a[scores={<objective>=1..}] run function namespace:__private__/trigger/0`} language='elixir' />
+                        <code className="code">__private__/trigger/0.mcfunction</code>
+                        <CodeBlock code={`execute if score @s <objective> matches <id1> at @s run function namespace:__private__/trigger/1
+execute if score @s <objective> matches <id2> at @s run function namespace:__private__/trigger/2
+...
+scoreboard players reset @s <objective>
+scoreboard players enable @s <objective>`} language='elixir' />
+                        <code className="code">__private__/trigger/1.mcfunction</code>
+                        <CodeBlock code={`<command>
+<command>
+...`} language='elixir' />
+                        <code className="code">__private__/trigger/2.mcfunction</code>
+                        <CodeBlock code={`<command>
+<command>
+...`} language='elixir' />
+                        <code className="code">advancements/__private__/trigger/enable.json</code>
+                        <CodeBlock code={`{
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:tick"
+    }
+  },
+  "rewards": {
+    "function": "namespace:__private__/trigger/enable"
+  }
+}`} language='json' />
+                        <code className="code">__private__/trigger/enable.mcfunction</code>
+                        <CodeBlock code={`scoreboard players enable @s <objective>`} language='elixir' />
+                        <p className="fw-bold">Example:</p>
+                        <CodeBlock code={`Trigger.setup(help, {                 
+    1: ()=>{
+        tellraw @s {"text":"Cool help commands", "color":"gold"};
+    }
+});
+// Typing \`/trigger help\` will display cool help commands.`} language='js' />
+                        <p className="fw-bold">Example:</p>
+                        <CodeBlock code={`Trigger.setup(__trigger__, {                 
+    1: ()=>{
+        tellraw @s {"text":"You clicked Menu_1!", "color":"green"};
+        playsound ui.button.click master @s ~ ~ ~ 1 1 1;
+    },
+    2: ()=>{
+        tellraw @s {"text":"You clicked Menu_2!", "color":"green"};
+        playsound ui.button.click master @s ~ ~ ~ 1 1 1;
+    },
+    3: ()=>{
+        tellraw @s {"text":"You clicked Menu_3!", "color":"green"};
+        playsound ui.button.click master @s ~ ~ ~ 1 1 1;
+    },
+});
+gamerule sendCommandFeedback false;
+tellraw @a [
+    {"text":"Menu_1","color":"aqua","hoverEvent":{"action":"show_text","contents":""},"clickEvent":{"action":"run_command","value":"/trigger __trigger__ set 1"}}, "\\n",
+    {"text":"Menu_2","color":"aqua","hoverEvent":{"action":"show_text","contents":""},"clickEvent":{"action":"run_command","value":"/trigger __trigger__ set 2"}}, "\\n",
+    {"text":"Menu_3","color":"aqua","hoverEvent":{"action":"show_text","contents":""},"clickEvent":{"action":"run_command","value":"/trigger __trigger__ set 3"}}, "\\n"
+];`} language='js' />
                     </Feature>
                 </SearchContext.Provider>
             </div>

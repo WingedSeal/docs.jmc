@@ -303,19 +303,22 @@ execute if <condition> run function namespace:__private__/while_loop/0`} languag
                     <Feature id="for_loop" summary="For Loop">
                         <p>Simulate Javascript's <code className="code">for</code> loop. It consist of 3 statements.</p>
                         <ul>
-                            <li><code className="code">{`let $<variable> = <integer>`}</code>is executed (one time) before the execution of the code block. And <span className="text-danger">must be variable assignment with integer and nothing else</span>.</li>
+                            <li><code className="code">{`let $<variable> = <integer>|$<variable>`}</code>is executed (one time) before the execution of the code block. And <span className="text-danger">must be variable assignment with integer/variable and nothing else</span>.</li>
                             <li><code className="code">{`<condition>`}</code>defines the condition for executing the code block.</li>
                             <li><code className="code">{`<statement>`}</code>is executed (every time) after the code block has been executed.</li>
                         </ul>
                         <p>Note that <code className="code">{`$<variable>`}</code> is similar to local scope. You cannot access it from outside the loop, and if you already declared/assign variable with the same name on global scope, local will take priority in the code block. <span className="text-danger">But if you nested for loop and create a variable with the same name, it'll all count as a single variable.</span></p>
-                        <CodeBlock code={`for (let $<variable> = <integer>; <condition>; <statement>) {
+                        <CodeBlock code={`for (let $<variable> = <integer>|$<variable>; <condition>; <statement>) {
   <command>;
   <command>;
   ...
 }`} language='javascript' />
                         <p className="fst-italic">Output:</p>
-                        <code className="code">__load__.mcfunction</code>
+                        <code className="code">__load__.mcfunction</code> {`(<integer>)`}
                         <CodeBlock code={`scoreboard players set $__private__.<variable> __variable__ <integer>
+execute if <condition> run function namespace:__private__/for_loop/0`} language='elixir' />
+                        <code className="code">__load__.mcfunction</code> {`($<variable>)`}
+                        <CodeBlock code={`scoreboard players operation $__private__.<variable> __variable__ = $<variable> __variable__
 execute if <condition> run function namespace:__private__/for_loop/0`} language='elixir' />
                         <code className="code">__private__/for_loop/0.mcfunction</code>
                         <CodeBlock code={`<command>;
