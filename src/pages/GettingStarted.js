@@ -26,7 +26,7 @@ const GettingStarted = () => {
                         <div className="d-flex align-items-baseline flex-wrap-reverse justify-content-center justify-content-sm-between">
                             <div className="fw-bold mb-2 me-1 fs-4">Python Version</div>
                         </div>
-                        <p>1. Download Soure Code from <a href="https://github.com/WingedSeal/jmc/releases/latest" target="_blank" rel="noopener noreferrer">latest release</a>. (Or download ZIP/Clone <a href="https://github.com/WingedSeal/jmc" target="_blank" rel="noopener noreferrer">repository</a> from github)</p>
+                        <p>1. Download Source Code from <a href="https://github.com/WingedSeal/jmc/releases/latest" target="_blank" rel="noopener noreferrer">latest release</a>. (Or download ZIP/Clone <a href="https://github.com/WingedSeal/jmc" target="_blank" rel="noopener noreferrer">repository</a> from github)</p>
                         <p>2. (Optional, If you would like to have all libraries in global, you can skip this step) Create a virtual environment for python (<code className='code'>python -m venv venv</code>) and then activate. (For example, <code className='code'>venv\Scripts\activate</code>)</p>
                         <p>3. Install libraries from requirements.txt using <code className='code'>pip install -r requirements.txt</code></p>
                         <p>4. Run <code className='code'>main.py</code>, This will behave exactly like Executable Version (<code className='code'>JMC-Compiler.exe</code>)</p>
