@@ -61,7 +61,11 @@ main.main()`} language='python' />
                         <div className="d-flex align-items-baseline flex-wrap-reverse justify-content-center justify-content-sm-between">
                             <div className="fw-bold mb-2 me-1 fs-4">No GUI Version (Linux/MacOS)</div>
                         </div>
-                        <p>Follow Python Version's step 0-3 then create <code className="code">run.py</code> and insert the following code.</p>
+                        <p>0. Download Python 3.9+ (JMC is being developed in <a href='https://www.python.org/downloads/release/python-395/' target="_blank" rel="noopener noreferrer">Python 3.9.5</a>.)</p>
+                        <p>1. Download Source Code from <a href="https://github.com/WingedSeal/jmc/releases/latest" target="_blank" rel="noopener noreferrer">latest release</a>. (Or download ZIP/Clone <a href="https://github.com/WingedSeal/jmc" target="_blank" rel="noopener noreferrer">repository</a> from github)</p>
+                        <p>2. (Optional, If you would like to have all libraries in global, you can skip this step) Create a virtual environment for python (<code className='code'>python -m venv venv</code>) and then activate. (For example, <code className='code'>venv\Scripts\activate</code>)</p>
+                        <p>3. Install regex libary using <code className='code'>pip install regex</code></p>
+                        <p>4. Create a <code className='code'>.py</code> file at the desired directory then insert the following code (The file name cannot be <code className='code'>main.py</code>)</p>
                         <CodeBlock code={`import sys
 sys.path.append(r'PATH_TO_FOLDER_HERE')  # noqa
 from pathlib import Path
