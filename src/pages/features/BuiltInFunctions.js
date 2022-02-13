@@ -139,8 +139,8 @@ tellraw @s [ { "text": "You have right clicked ", "color": "gold" }, {"score":{"
                         <code className="code">__private__/rc_detection/1.mcfunction</code>
                         <CodeBlock code={`scoreboard players operation $count2 __variable__ += 1 __int__
 tellraw @s [ { "text": "You have right clicked ", "color": "gold" }, {"score":{"name":"$count2","objective":"__variable__"},"color":"white"}, { "text": " times with ID 2.", "color": "gold" } ]`} language='elixir' />
-                        <Related to="/features/syntax#variable_declaration" text="Variable Declaration" />
-                        <Related to="/features/built-in#to_string" text="toString()" />
+                        <Related setSearchValue={setSearchValue} to="/features/syntax#variable_declaration" text="Variable Declaration" />
+                        <Related setSearchValue={setSearchValue} to="/features/built-in#to_string" text="toString()" />
                     </Feature>
 
                     <Feature id="math_sqrt" summary="Math.sqrt()" keywords="square root">
@@ -174,8 +174,8 @@ $result = Math.sqrt($var);
 tellraw @a $result.toString();`} language='javascript' />
                         <p className="fst-italic">In-game Output:</p>
                         <p className="text-white bg-dark">70</p>
-                        <Related to="/features/syntax#variable_assignment" text="Variable Assignment" />
-                        <Related to="/features/built-in#to_string" text="toString()" />
+                        <Related setSearchValue={setSearchValue} to="/features/syntax#variable_assignment" text="Variable Assignment" />
+                        <Related setSearchValue={setSearchValue} to="/features/built-in#to_string" text="toString()" />
                     </Feature>
 
                     <Feature id="hardcode_repeat" summary="Hardcode.repeat()">
@@ -198,7 +198,7 @@ tellraw @a "Hello World: 2"
 tellraw @a "Hello World: 3"
 tellraw @a "Hello World: 4"
 tellraw @a "Hello World: 5"`} language='json' />
-                        <Related to="/features/built-in#hardcode_calc" text="Hardcode.calc()" />
+                        <Related setSearchValue={setSearchValue} to="/features/built-in#hardcode_calc" text="Hardcode.calc()" />
                     </Feature>
 
                     <Feature id="hardcode_calc" summary="Hardcode.calc()">
@@ -224,7 +224,7 @@ tellraw @a "2^2=4"
 tellraw @a "3^2=9"
 tellraw @a "4^2=16"
 tellraw @a "5^2=25"`} language='elixir' />
-                        <Related to="/features/built-in#hardcode_repeat" text="Hardcode.repeat()" />
+                        <Related setSearchValue={setSearchValue} to="/features/built-in#hardcode_repeat" text="Hardcode.repeat()" />
                     </Feature>
 
                     <Feature id="player_first_join" summary="Player.firstJoin()">
@@ -250,7 +250,7 @@ tellraw @a "5^2=25"`} language='elixir' />
                         <CodeBlock code={`<command>;
 <command>
 ...`} language='elixir' />
-                        <Related to="/features/built-in#player_rejoin" text="Player.rejoin()" />
+                        <Related setSearchValue={setSearchValue} to="/features/built-in#player_rejoin" text="Player.rejoin()" />
                     </Feature>
 
                     <Feature id="player_rejoin" summary="Player.rejoin()" keywords="leave">
@@ -273,7 +273,7 @@ function namespace:__private__/player_rejoin/0`} language='elixir' />
 <command>
 ...`} language='elixir' />
 
-                        <Related to="/features/built-in#player_first_join" text="Player.firstJoin()" />
+                        <Related setSearchValue={setSearchValue} to="/features/built-in#player_first_join" text="Player.firstJoin()" />
                     </Feature>
 
                     <Feature id="trigger_setup" summary="Trigger.setup()" keywords="permissions perms scoreboard op">
@@ -358,6 +358,87 @@ tellraw @a [
     {"text":"Menu_3","color":"aqua","hoverEvent":{"action":"show_text","contents":""},"clickEvent":{"action":"run_command","value":"/trigger __trigger__ set 3"}}, "\\n"
 ];`} language='js' />
                     </Feature>
+
+                    <Feature id="timer_add" summary="Timer.add()" keywords="scoreboard">
+                        <p>Create a scoreboard timer with 3 <span className="fst-italic">run mode</span></p>
+                        <ul>
+                            <li><code className="code">runOnce</code>: run the commands once after the timer is over.</li>
+                            <li><code className="code">runTick</code>: run the commands every tick if timer is over.</li>
+                            <li><code className="code">none</code>: do not run any command.</li>
+                        </ul>
+                        <CodeBlock code={`Timer.add(<objective>, runOnce|runTick, ()=>{
+    <command>;
+    <command>;
+    ...
+}, <target_selector>);`} language='javascript' />
+                        <CodeBlock code={`Timer.add(<objective>, none, <target_selector>);`} language='javascript' />
+                        <p className="fst-italic">Output runOnce:</p>
+                        <code className="code">__load__.mcfunction</code>
+                        <CodeBlock code={`scoreboard objectives add <objective> dummy`} language='elixir' />
+                        <code className="code">__tick__.mcfunction</code>
+                        <CodeBlock code={`function default_namespace:__private__/timer_add/main`} language='elixir' />
+                        <code className="code">__private__/timer_add/main.mcfunction</code>
+                        <CodeBlock code={`execute as <target_selector> if score @s <objective> matches 1.. run scoreboard players remove @s <objective> 1
+execute as <target_selector> if score @s <objective> matches 0 run function default_namespace:__private__/timer_add/0`} language='elixir' />
+                        <code className="code">__private__/timer_add/0.mcfunction</code>
+                        <CodeBlock code={`scoreboard players reset @s <objective>
+<command>
+<command>
+...`} language='elixir' />
+                        <p className="fst-italic">Output runTick:</p>
+                        <code className="code">__load__.mcfunction</code>
+                        <CodeBlock code={`scoreboard objectives add <objective> dummy`} language='elixir' />
+                        <code className="code">__tick__.mcfunction</code>
+                        <CodeBlock code={`function default_namespace:__private__/timer_add/main`} language='elixir' />
+                        <code className="code">__private__/timer_add/main.mcfunction</code>
+                        <CodeBlock code={`execute as <target_selector> if score @s <objective> matches 1.. run scoreboard players remove @s <objective> 1
+execute as <target_selector> unless score @s <objective> matches 1.. run function default_namespace:__private__/timer_add/0`} language='elixir' />
+                        <code className="code">__private__/timer_add/0.mcfunction</code>
+                        <CodeBlock code={`<command>
+<command>
+...`} language='elixir' />
+                        <p className="fst-italic">Output none:</p>
+                        <code className="code">__load__.mcfunction</code>
+                        <CodeBlock code={`scoreboard objectives add <objective> dummy`} language='elixir' />
+                        <code className="code">__tick__.mcfunction</code>
+                        <CodeBlock code={`function default_namespace:__private__/timer_add/main`} language='elixir' />
+                        <code className="code">__private__/timer_add/main.mcfunction</code>
+                        <CodeBlock code={`execute as <target_selector> if score @s <objective> matches 1.. run scoreboard players remove @s <objective> 1`} language='elixir' />
+                        <p className="fw-bold">Example:</p>
+                        <CodeBlock code={`Timer.add(help_cd, runOnce, ()=>{
+    tellraw @s "Your help command is ready!";
+}, @a);
+Trigger.setup(help, {
+    1: ()=>{
+        if (Timer.isOver(help_cd)) {
+            Timer.set(timer, @s, 100);
+            tellraw @s "Here is your help message";
+        } else {
+            tellraw @s "Do not spam help command!";
+        }
+    }
+});`} language='javascript' />
+                        <Related setSearchValue={setSearchValue} to="/features/built-in#trigger_setup" text="Trigger.setup()" />
+                        <Related setSearchValue={setSearchValue} to="/features/built-in#timer_is_over" text="Timer.isOver()" />
+                        <Related setSearchValue={setSearchValue} to="/features/built-in#timer_set" text="Timer.set()" />
+                    </Feature>
+
+                    <Feature id="timer_add" summary="Timer.set()" keywords="scoreboard">
+                        <p>Set entity's score to start the timer.</p>
+                        <CodeBlock code={`Timer.set(<objective>, <target_selector>, <tick>);`} language='javascript' />
+                        <p className="fst-italic">Output:</p>
+                        <CodeBlock code={`scoreboard players set <target_selector> <objective> <tick>`} language='elixir' />
+                        <Related setSearchValue={setSearchValue} to="/features/built-in#timer_add" text="Timer.set()" />
+                    </Feature>
+
+                    <Feature id="timer_add" summary="Timer.isOver()" keywords="scoreboard">
+                        <p>A condition to tell if timer of the entity running it is over or not. <span className="text-danger">Only works in JMC's condition (If/Else, While Loop, etc.)</span></p>
+                        <CodeBlock code={`Timer.isOver(<objective>);`} language='javascript' />
+                        <p className="fst-italic">Output:</p>
+                        <CodeBlock code={`unless score @s <objective> matches 1..`} language='elixir' />
+                        <Related setSearchValue={setSearchValue} to="/features/built-in#timer_add" text="Timer.set()" />
+                    </Feature>
+
                 </SearchContext.Provider>
             </div>
         </div >
