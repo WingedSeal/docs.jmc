@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react'
 import { Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import { Link, useLocation } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faDiscord } from '@fortawesome/free-brands-svg-icons';
 import './../../App.scss'
 
 
@@ -61,6 +63,7 @@ const AppNavbar = () => {
                             <NavItem to="/features/syntax">Syntax</NavItem>
                             <NavItem to="/features/built-in">Built-in Function</NavItem>
                         </NavDropdown>
+                        <Nav.Link href="https://discord.gg/PNWKpwdzD3" target="_blank" rel="noopener noreferrer" ><FontAwesomeIcon icon={faDiscord} /></Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
