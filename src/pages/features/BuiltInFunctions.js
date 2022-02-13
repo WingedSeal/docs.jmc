@@ -276,7 +276,7 @@ function namespace:__private__/player_rejoin/0`} language='elixir' />
                         <Related to="/features/built-in#player_first_join" text="Player.firstJoin()" />
                     </Feature>
 
-                    <Feature id="trigger_setup" summary="Trigger.setup()" keywords="permissions perms scoreboard">
+                    <Feature id="trigger_setup" summary="Trigger.setup()" keywords="permissions perms scoreboard op">
                         <p>Setup a trigger system for custom command or allowing players with no permission to click a text button. <span className="text-danger">(<code className="code">{`<objective>`}</code> must be no more than 16 characters long. ID can range from 1 to Java's long MAX_VALUE (9,223,372,036,854,775,807).) </span></p>
                         <p>You if you are not making a custom command. It is recommended that you only use 1 objective (Call setup once) for optimization.</p>
                         <p>There are a lot of optimization that might cause headache when reading compiled code. All it actually does in the end is that it create a trigger system which you can call using <code className="code">{`/trigger <objective> set <id>`}</code>. Or to call <code className="code">{`<id1>`}</code>, just <code className="code">{`/trigger <objective>`}</code> will do. (In case you don't know, you can use <code className="code">/trigger</code> command without <span className="fst-italic">op</span>.)</p>
