@@ -11,7 +11,7 @@ const GettingStarted = () => {
         <div>
             <div className="paragraphs">
                 <h2>Installation</h2>
-                <p>Before you starting coding, let's download the compiler first. You have 2 choices here, </p>
+                <p>Before you starting coding, let's download the compiler first. You have 3 choices here, </p>
                 <ListGroup as="ol" className='m-3'>
                     <ListGroup.Item as="li" className="fs-5 d-flex flex-column">
                         <div className="d-flex align-items-baseline flex-wrap-reverse justify-content-center justify-content-sm-between">
@@ -26,6 +26,7 @@ const GettingStarted = () => {
                         <div className="d-flex align-items-baseline flex-wrap-reverse justify-content-center justify-content-sm-between">
                             <div className="fw-bold mb-2 me-1 fs-4">Python Version</div>
                         </div>
+                        <p>0. Download Python 3.9+ (JMC is being developed in <a href='https://www.python.org/downloads/release/python-395/' target="_blank" rel="noopener noreferrer">Python 3.9.5</a>.)</p>
                         <p>1. Download Source Code from <a href="https://github.com/WingedSeal/jmc/releases/latest" target="_blank" rel="noopener noreferrer">latest release</a>. (Or download ZIP/Clone <a href="https://github.com/WingedSeal/jmc" target="_blank" rel="noopener noreferrer">repository</a> from github)</p>
                         <p>2. (Optional, If you would like to have all libraries in global, you can skip this step) Create a virtual environment for python (<code className='code'>python -m venv venv</code>) and then activate. (For example, <code className='code'>venv\Scripts\activate</code>)</p>
                         <p>3. Install libraries from requirements.txt using <code className='code'>pip install -r requirements.txt</code></p>
@@ -55,6 +56,31 @@ main.main()`} language='python' />
                         </Collapse>
 
 
+                    </ListGroup.Item>
+                    <ListGroup.Item as="li" className="fs-5 d-flex flex-column">
+                        <div className="d-flex align-items-baseline flex-wrap-reverse justify-content-center justify-content-sm-between">
+                            <div className="fw-bold mb-2 me-1 fs-4">No GUI Version (Linux/MacOS)</div>
+                        </div>
+                        <p>Follow Python Version's step 0-3 then create <code className="code">run.py</code> and insert the following code.</p>
+                        <CodeBlock code={`import sys
+sys.path.append(r'PATH_TO_FOLDER_HERE')  # noqa
+from pathlib import Path
+from config import set_configs  # type: ignore
+
+set_configs({
+    'namespace': 'default_namespace',
+    'description': 'Compiled by JMC(Made by WingedSeal)',
+    'pack_format': 7,
+    'target': (Path(__file__).parent/'main.jmc').resolve().as_posix(),
+    'output': Path(__file__).parent.resolve().as_posix(),
+    'debug_mode': False
+})
+
+from jmc import DataPack  # type: ignore
+datapack = DataPack()
+datapack.init()
+datapack.compile()`} language='python' />
+                        <p>You can also change the configuration.</p>
                     </ListGroup.Item>
                 </ListGroup>
                 <h2>Usage</h2>
