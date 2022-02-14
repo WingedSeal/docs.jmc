@@ -492,7 +492,6 @@ give @s <item>{<nbt>} 1
 }, baseItem="barrier", onCraft=()=>{
     tellraw @s "Wow! You crafted a special diamond";
 })`} language='elixir' />
-                        <Related setSearchValue={setSearchValue} to="/features/built-in#timer_add" text="Timer.add()" />
                     </Feature>
 
                 </SearchContext.Provider>
