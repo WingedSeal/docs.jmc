@@ -440,6 +440,61 @@ Trigger.setup(help, {
                         <Related setSearchValue={setSearchValue} to="/features/built-in#timer_add" text="Timer.add()" />
                     </Feature>
 
+                    <Feature id="recipe_table" summary="Recipe.table()" keywords="custom crafting knowledge book" wip>
+                        <p>Create a custom recipe for Crafting Table allowing NBT in result item and running function on craft</p>
+                        <p><code className="code">baseItem</code> and <code className="code">onCraft</code> can be left out and <code className="code">baseItem</code> will default to <span className="fst-italic">minecraft:knowledge_book</span>.</p>
+                        <CodeBlock code={`Recipe.table(<recipe_json>, baseItem=<base_item>, onCraft=()=>{
+    <command>;
+    <command>;
+    ...
+});`} language='javascript' />
+                        <p className="fst-italic">Output:</p>
+                        <code className="code">advancements/__private__/recipe_table/0.json</code>
+                        <CodeBlock code={`{
+    "criteria": {
+        "requirement": {
+            "trigger": "minecraft:recipe_unlocked",
+            "conditions": {
+                "recipe": "default_namespace:__private__/recipe_table/0"
+            }
+        }
+    },
+    "rewards": {
+        "function": "default_namespace:__private__/recipe_table/0"
+    }
+}`} language='json' />
+                        <code className="code">recipes/__private__/recipe_table/0.json</code>
+                        <CodeBlock code={`{
+    ...
+    "result": {
+        "item": "minecraft:<base_item>",
+        "count": <count>
+    }
+}`} language='json' />
+                        <code className="code">__private__/recipe_table/0.json</code>
+                        <CodeBlock code={`clear @s <base_item> 1
+give @s <item>{<nbt>} 1
+<command>
+<command>
+...`} language='elixir' />
+                        <p className="fw-bold">Example:</p>
+                        <CodeBlock code={`Recipe.table({
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "minecraft:oak_planks"
+        }
+    ],
+    "result": {
+    "item": "minecraft:diamond{test:1b}",
+    "count": 5
+    }
+}, baseItem="barrier", onCraft=()=>{
+    tellraw @s "Wow! You crafted a special diamond";
+})`} language='elixir' />
+                        <Related setSearchValue={setSearchValue} to="/features/built-in#timer_add" text="Timer.add()" />
+                    </Feature>
+
                 </SearchContext.Provider>
             </div>
         </div >
