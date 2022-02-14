@@ -428,6 +428,7 @@ Trigger.setup(help, {
                         <CodeBlock code={`Timer.set(<objective>, <target_selector>, <tick: integer>|$<variable>);`} language='javascript' />
                         <p className="fst-italic">Output:</p>
                         <CodeBlock code={`scoreboard players set <target_selector> <objective> <tick>`} language='elixir' />
+                        <CodeBlock code={`scoreboard players operation <target_selector> <objective> = $<variable> __variable__`} language='elixir' />
                         <Related setSearchValue={setSearchValue} to="/features/built-in#timer_add" text="Timer.add()" />
                     </Feature>
 
