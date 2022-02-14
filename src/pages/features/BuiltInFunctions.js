@@ -423,20 +423,20 @@ Trigger.setup(help, {
                         <Related setSearchValue={setSearchValue} to="/features/built-in#timer_set" text="Timer.set()" />
                     </Feature>
 
-                    <Feature id="timer_add" summary="Timer.set()" keywords="scoreboard">
+                    <Feature id="timer_set" summary="Timer.set()" keywords="scoreboard">
                         <p>Set entity's score to start the timer.</p>
-                        <CodeBlock code={`Timer.set(<objective>, <target_selector>, <tick>);`} language='javascript' />
+                        <CodeBlock code={`Timer.set(<objective>, <target_selector>, <tick: integer>|$<variable>);`} language='javascript' />
                         <p className="fst-italic">Output:</p>
                         <CodeBlock code={`scoreboard players set <target_selector> <objective> <tick>`} language='elixir' />
-                        <Related setSearchValue={setSearchValue} to="/features/built-in#timer_add" text="Timer.set()" />
+                        <Related setSearchValue={setSearchValue} to="/features/built-in#timer_add" text="Timer.add()" />
                     </Feature>
 
-                    <Feature id="timer_add" summary="Timer.isOver()" keywords="scoreboard">
+                    <Feature id="timer_is_over" summary="Timer.isOver()" keywords="scoreboard">
                         <p>A condition to tell if timer of the entity running it is over or not. <span className="text-danger">Only works in JMC's condition (If/Else, While Loop, etc.)</span></p>
                         <CodeBlock code={`Timer.isOver(<objective>);`} language='javascript' />
                         <p className="fst-italic">Output:</p>
                         <CodeBlock code={`unless score @s <objective> matches 1..`} language='elixir' />
-                        <Related setSearchValue={setSearchValue} to="/features/built-in#timer_add" text="Timer.set()" />
+                        <Related setSearchValue={setSearchValue} to="/features/built-in#timer_add" text="Timer.add()" />
                     </Feature>
 
                 </SearchContext.Provider>
