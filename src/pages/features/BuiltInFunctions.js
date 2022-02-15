@@ -440,7 +440,7 @@ Trigger.setup(help, {
                         <Related setSearchValue={setSearchValue} to="/features/built-in#timer_add" text="Timer.add()" />
                     </Feature>
 
-                    <Feature id="recipe_table" summary="Recipe.table()" keywords="custom crafting knowledge book" wip>
+                    <Feature id="recipe_table" summary="Recipe.table()" keywords="custom crafting knowledge book">
                         <p>Create a custom recipe for Crafting Table allowing NBT in result item and running function on craft</p>
                         <p><code className="code">baseItem</code> and <code className="code">onCraft</code> can be left out and <code className="code">baseItem</code> will default to <span className="fst-italic">minecraft:knowledge_book</span>.</p>
                         <CodeBlock code={`Recipe.table(<recipe_json>, baseItem=<base_item>, onCraft=()=>{
