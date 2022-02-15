@@ -468,12 +468,12 @@ Trigger.setup(help, {
     ...
     "result": {
         "item": "minecraft:<base_item>",
-        "count": <count>
+        "count": 1
     }
 }`} language='json' />
                         <code className="code">__private__/recipe_table/0.json</code>
                         <CodeBlock code={`clear @s <base_item> 1
-give @s <item>{<nbt>} 1
+give @s <item>{<nbt>} <count>
 recipe take @s namespace:__private__/recipe_table/0
 advancement revoke @s only namespace:__private__/recipe_table/0
 <command>
