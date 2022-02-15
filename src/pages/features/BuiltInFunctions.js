@@ -488,8 +488,8 @@ advancement revoke @s only namespace:__private__/recipe_table/0
         }
     ],
     "result": {
-    "item": "minecraft:diamond{test:1b}",
-    "count": 5
+        "item": "minecraft:diamond{test:1b}",
+        "count": 5
     }
 }, baseItem=barrier, onCraft=()=>{
     tellraw @s "Wow! You crafted a special diamond";
