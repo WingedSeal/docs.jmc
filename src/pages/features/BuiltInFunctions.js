@@ -493,7 +493,7 @@ advancement revoke @s only namespace:__private__/recipe_table/0
     }
 }, baseItem=barrier, onCraft=()=>{
     tellraw @s "Wow! You crafted a special diamond";
-})`} language='elixir' />
+});`} language='elixir' />
                     </Feature>
 
                 </SearchContext.Provider>
