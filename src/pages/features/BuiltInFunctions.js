@@ -178,6 +178,9 @@ tellraw @a $result.toString();`} language='javascript' />
                         <Related setSearchValue={setSearchValue} to="/features/built-in#to_string" text="toString()" />
                     </Feature>
 
+                    <Feature id="math_random" summary="Math.random()" keywords="randomize lcg" wip>
+                    </Feature>
+
                     <Feature id="hardcode_repeat" summary="Hardcode.repeat()">
                         <p>Some features in minecraft datapack require hard coding, this function will be a tool to help you.</p>
                         <CodeBlock code={`Hardcode.repeat("<index_string>", ()=>{
@@ -495,6 +498,22 @@ advancement revoke @s only namespace:__private__/recipe_table/0
     tellraw @s "Wow! You crafted a special diamond";
 });`} language='elixir' />
                     </Feature>
+
+                    <Feature id="debug_track" summary="Debug.track()" keywords="variable show tracking" wip>
+                    </Feature>
+
+                    <Feature id="debug_show_track" summary="Debug.showTrack()" keywords="variable show tracking" wip>
+                    </Feature>
+
+                    <Feature id="debug_history" summary="Debug.history()" keywords="variable save cache" wip>
+                    </Feature>
+
+                    <Feature id="debug_show_history" summary="Debug.showHistory()" keywords="variable save cache" wip>
+                    </Feature>
+
+                    <Feature id="debug_cleanup" summary="Debug.cleanup()" keywords="clear scoreboard" wip>
+                    </Feature>
+
 
                 </SearchContext.Provider>
             </div>
