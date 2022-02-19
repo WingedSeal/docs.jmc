@@ -17,7 +17,7 @@ const Syntax = () => {
                 <SearchContext.Provider value={searchValue}>
 
                     <Feature id="variable_declaration" summary="Variable Declaration" keywords="declare">
-                        <p>Initialize a variable, it'll set the variable to 0 if the variable doesn't exist. (Equivalent to <code className='code'>+=0</code>)</p>
+                        <p>Initialize a variable, it'll set the variable to 0 if the variable doesn't exist. (Equivalent to <code className='code'>+=0</code>) You don't need to initialize a variable to use it unlike most programming language.</p>
                         <CodeBlock code={`let $<variable>;`} language='javascript' />
                         <p className="fst-italic">Output: </p>
                         <CodeBlock code={`scoreboard players add $<variable> __variable__ 0`} language='elixir' />
@@ -46,12 +46,13 @@ const Syntax = () => {
                         <p className="fst-italic">Output: </p>
                         <CodeBlock code={`scoreboard players operations <target> __variable__ <operations> <source> __variable__`} language='elixir' />
                         <CodeBlock code={`scoreboard players operations <target> __variable__ <operations> <integer> __int__`} language='elixir' />
+                        <CodeBlock code={`scoreboard players add|remove <target> __variable__ <integer>`} language='elixir' />
                     </Feature>
 
                     <Feature id="incrementation" summary="Incrementation" keywords="decrementation ++ --">
                         <ul>
-                            <li><code className="code">{`$<variable>++`}</code> is <code className="code">{`$<variable> += 1`}</code></li>
-                            <li><code className="code">{`$<variable>--`}</code> is <code className="code">{`$<variable> -= 1`}</code></li>
+                            <li><code className="code">{`$<variable>++`}</code> is equivalent to <code className="code">{`$<variable> += 1`}</code></li>
+                            <li><code className="code">{`$<variable>--`}</code> is equivalent to <code className="code">{`$<variable> -= 1`}</code></li>
                             <Related setSearchValue={setSearchValue} to="/features/syntax#variable_operation" text="Variable Operations" />
                         </ul>
                     </Feature>
@@ -106,7 +107,7 @@ tellraw @a "SPAM 2"`} language='elixir' />
                         <p className="fst-italic">Output: </p>
                         <code className="code">__load__.mcfunction</code>
                         <CodeBlock code={`execute ... run function namespace:__private__/anonymous/0`} language='elixir' />
-                        <code className="code">__private__/if_else/0.mcfunction</code>
+                        <code className="code">__private__/anonymous/0.mcfunction</code>
                         <CodeBlock code={`<command>;
 <command>;
 ...`} language='javascript' />
@@ -117,11 +118,10 @@ tellraw @a "SPAM 2"`} language='elixir' />
 }`} language='javascript' />
                         <p className="fst-italic">Output: </p>
                         <code className="code">__load__.mcfunction</code>
-                        <CodeBlock code={`execute ... run function namespace:__private__/anonymous/0`} language='elixir' />
-                        <code className="code">__private__/if_else/0.mcfunction</code>
-                        <CodeBlock code={`<command>;
-<command>;
-...`} language='javascript' />
+                        <CodeBlock code={`execute as @a at @s run function namespace:__private__/anonymous/5`} language='elixir' startline={7} />
+                        <code className="code">__private__/anonymous/5.mcfunction</code>
+                        <CodeBlock code={`tp @s ~ ~1 ~
+playsound entity.wither.spawn master @s ~ ~ ~ 1 2`} language='elixir' />
                     </Feature>
 
                     <Feature id="function_grouping" summary="Function Grouping" keywords="class">
@@ -155,6 +155,23 @@ tellraw @a "SPAM 2"`} language='elixir' />
 ...`} language='elixir' />
                         <code className="code">{`namespace/<file_type>/[<directory>/]<folder_name>/[<directory>/]<file_name>.json`}</code>
                         <CodeBlock code={`<JSON content>`} language='elixir' />
+                        <p className="fw-bold">Example:</p>
+                        <CodeBlock code={`class foo {
+    function bar() {
+        <command>;
+        <command>;
+        ...
+    }
+    new advancements(bar) <JSON content>
+}`} language='javascript' />
+                        <p>is equivalent to</p>
+                        <CodeBlock code={`function foo.bar() {
+    <command>;
+    <command>;
+    ...
+}
+new advancements(foo.bar) <JSON content>`} language='javascript' />
+
                         <Related setSearchValue={setSearchValue} to="/features/syntax#function_defining" text='Function Defining' />
                         <Related setSearchValue={setSearchValue} to="/features/syntax#new" text='New keyword' />
                     </Feature>

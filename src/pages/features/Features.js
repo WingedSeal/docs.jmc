@@ -25,7 +25,7 @@ const Features = () => {
         ~ ~ ~
         1 2;`} language='javascript' />
                     <p className="fst-italic">Output: </p>
-                    <CodeBlock code={`execute as @a at @s run playsound entity.wither.spawn master @s ~ ~ ~ 1 2;`} language='javascript' />
+                    <CodeBlock code={`execute as @a at @s run playsound entity.wither.spawn master @s ~ ~ ~ 1 2`} language='javascript' />
                 </details>
 
                 <section id="import" />
@@ -63,6 +63,12 @@ function tellraw_message() {
                         <li>Generate <code className="code">load.json</code> with a value of <code className="code">__load__.mcfunction</code></li>
                         <li>Generate <code className="code">tick.json</code> with a value of <code className="code">__tick__.mcfunction</code></li>
                     </ul>
+                    <p className="fw-bold">Example: </p>
+                    <CodeBlock code={`say "Hello World";
+function __tick__() {
+    say "Hello World but every tick.";
+}
+say "Hello World again.";`} language='javascript' />
                     <Related to="/features/syntax#function_defining" text="Function" />
                 </details>
 

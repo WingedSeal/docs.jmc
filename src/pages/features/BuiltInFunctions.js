@@ -178,7 +178,56 @@ tellraw @a $result.toString();`} language='javascript' />
                         <Related setSearchValue={setSearchValue} to="/features/built-in#to_string" text="toString()" />
                     </Feature>
 
-                    <Feature id="math_random" summary="Math.random()" keywords="randomize lcg" wip>
+                    <Feature id="math_random" summary="Math.random()" keywords="randomize lcg">
+                        <p>Simply integer randomization process using <a href="https://en.wikipedia.org/wiki/Linear_congruential_generator">Linear congruential generator</a>.</p>
+                        <p>Don't get overwhelmed by how this function works, all you need to know is that it will randomize a number between <code className="code">min</code> and <code className="code">max</code> then put the result in output variable.</p>
+                        <p><code className="code">min</code> defaults to 1 and <code className="code">max</code> defaults to 2147483647. If you only gives it 1 arguments it'll interpret that as max.</p>
+                        <CodeBlock code={`$<output: variable> = Math.random(min=<min: integer>, max=<max: integer>);`} language='javascript' />
+                        <p className="fst-italic">Output:</p>
+                        <code className="code">__load__.mcfunction</code>
+                        <CodeBlock code={`execute unless score __math__.seed __variable__ matches -2147483648..2147483647 run function namespace:__private__/math/random_setup
+
+
+function namespace:__private__/math/random
+scoreboard players operation $var __variable__ = __math__.seed __variable__
+scoreboard players operation $var __variable__ %= <max-min+1> __int__
+scoreboard players operation $var __variable__ += <min> __int__`} language='elixir' />
+                        <code className="code">__private__/math/random.mcfunction</code>
+                        <CodeBlock code={`scoreboard players operation __math__.seed __variable__ *= __math__.random_a __variable__
+scoreboard players operation __math__.seed __variable__ += __math__.random_c __variable__`} language='elixir' />
+                        <code className="code">__private__/math/random_setup.mcfunction</code> (Initialize seed, a, c for the first time.)
+                        <CodeBlock code={`function default_namespace:__private__/math/random_seed
+scoreboard players operation __math__.random_a __variable__ = __math__.seed __variable__
+scoreboard players operation __math__.random_c __variable__ = __math__.seed __variable__
+scoreboard players operation __math__.random_c __variable__ *= __math__.seed __variable__`} language='elixir' />
+                        <code className="code">__private__/math/random_seed.mcfunction</code>
+                        <CodeBlock code={`execute store success score __math__.seed __variable__ if predicate default_namespace:__private__/math/random_0.5
+execute store success score __math__.random_tmp __variable__ if predicate default_namespace:__private__/math/random_0.5
+scoreboard players operation __math__.random_tmp __variable__ *= 2 __int__
+scoreboard players operation __math__.seed __variable__ += __math__.random_tmp __variable__
+execute store success score __math__.random_tmp __variable__ if predicate default_namespace:__private__/math/random_0.5
+scoreboard players operation __math__.random_tmp __variable__ *= 4 __int__
+scoreboard players operation __math__.seed __variable__ += __math__.random_tmp __variable__
+execute store success score __math__.random_tmp __variable__ if predicate default_namespace:__private__/math/random_0.5
+...
+...
+scoreboard players operation __math__.random_tmp __variable__ *= 536870912 __int__
+scoreboard players operation __math__.seed __variable__ += __math__.random_tmp __variable__
+execute store success score __math__.random_tmp __variable__ if predicate default_namespace:__private__/math/random_0.5
+scoreboard players operation __math__.random_tmp __variable__ *= 1073741824 __int__
+scoreboard players operation __math__.seed __variable__ += __math__.random_tmp __variable__`} language='js' />
+                        <code className="code">predicates/__private__/math/random_0.5.json</code>
+                        <CodeBlock code={`{
+    "condition": "minecraft:random_chance",
+    "chance": 0.5
+}`} language='json' />
+                        <p className="fw-bold">Example:</p>
+                        <CodeBlock code={`$var = Math.random(1,10);
+tellraw @a $var.toString();`} language='javascript' />
+                        <p className="fst-italic">In-game Output:</p>
+                        <p className="text-white bg-dark">8</p>
+                        <Related setSearchValue={setSearchValue} to="/features/syntax#variable_assignment" text="Variable Assignment" />
+                        <Related setSearchValue={setSearchValue} to="/features/built-in#to_string" text="toString()" />
                     </Feature>
 
                     <Feature id="hardcode_repeat" summary="Hardcode.repeat()">
@@ -499,19 +548,83 @@ advancement revoke @s only namespace:__private__/recipe_table/0
 });`} language='elixir' />
                     </Feature>
 
-                    <Feature id="debug_track" summary="Debug.track()" keywords="variable show tracking" wip>
+                    <Feature id="debug_track" summary="Debug.track()" keywords="variable show tracking">
+                        <p>Use when you need to track some variables for debugging.</p>
+                        <CodeBlock code={`Debug.track([
+    <objective>:<entity|player|fake_player>,
+    <objective>:<entity|player|fake_player>,
+    ...
+]);`} language='javascript' />
+                        <p className="fst-italic">Output:</p>
+                        <code className="code">__load__.mcfunction</code>
+                        <CodeBlock code={`scoreboard objectives add __debug__.track dummy {"text":"Tracking Scores", "color":"gold", "bold":true}
+scoreboard players reset * __debug__.track`} language='elixir' />
+                        <code className="code">__tick__.mcfunction</code>
+                        <CodeBlock code={`function namespace:__private__/debug_track/main`} language='elixir' />
+                        <code className="code">__private__/debug_track/main.mcfunction</code>
+                        <CodeBlock code={`execute unless score <entity|player|fake_player> <objective> matches -2147483648..2147483647 run scoreboard players operation <objective>:<entity|player|fake_player> __debug__.track = <entity|player|fake_player> <objective>
+execute unless score <entity|player|fake_player> <objective> matches -2147483648..2147483647 run scoreboard players operation <objective>:<entity|player|fake_player> __debug__.track = <entity|player|fake_player> <objective>
+...`} language='elixir' />
+                        <p className="fw-bold">Example:</p>
+                        <CodeBlock code={`Debug.track([
+    __variable__:$var1,
+    __variable__:$var2,
+]);
+Debug.showTrack();`} language='elixir' />
+                        <Related setSearchValue={setSearchValue} to="/features/built-in#debug_show_track" text="Debug.showTrack()" />
                     </Feature>
 
-                    <Feature id="debug_show_track" summary="Debug.showTrack()" keywords="variable show tracking" wip>
+                    <Feature id="debug_show_track" summary="Debug.showTrack()" keywords="variable show tracking">
+                        <p>Just show variables you are tracking on the sidebar.</p>
+                        <CodeBlock code={`Debug.showTrack();;`} language='javascript' />
+                        <p className="fst-italic">Output:</p>
+                        <CodeBlock code={`scoreboard objectives setdisplay sidebar __debug__.track`} language='elixir' />
+                        <Related setSearchValue={setSearchValue} to="/features/built-in#debug_track" text="Debug.track()" />
                     </Feature>
 
-                    <Feature id="debug_history" summary="Debug.history()" keywords="variable save cache" wip>
+                    <Feature id="debug_history" summary="Debug.history()" keywords="variable save cache">
+                        <p>Use when a variable you need to track changes too quickly for the eyes to see. It'll cache the value every time it updates up to 20. <span className="text-danger">You may only cache 1 value at a time.</span></p>
+                        <CodeBlock code={`Debug.history(<objective>:<entity|player|fake_player>, cache=<cache: 1-20>);`} language='javascript' />
+                        <p className="fst-italic">Output:</p>
+                        <code className="code">__load__.mcfunction</code>
+                        <CodeBlock code={`function namespace:__private__/debug_history/setup`} language='elixir' />
+                        <code className="code">__private__/debug_history/setup.mcfunction</code>
+                        <CodeBlock code={`scoreboard objectives add __debug__.histor dummy
+scoreboard objectives modify __debug__.histor displayname {"text":"History of <objective>:<entity|player|fake_player>", "color":"gold", "bold":true}`} language='elixir' />
+                        <code className="code">__tick__.mcfunction</code>
+                        <CodeBlock code={`function default_namespace:__private__/debug_history/main`} language='elixir' />
+                        <code className="code">__private__/debug_history/main.mcfunction</code>
+                        <CodeBlock code={`scoreboard players operation __debug__.current __variable__ = <entity|player|fake_player> <objective>
+execute unless score __debug__.current __variable__ = __debug__.tmp __variable__ run function namespace:__private__/debug_history/record
+scoreboard players operation __debug__.tmp __variable__ = __debug__.current __variable__.`} language='elixir' />
+                        <code className="code">__private__/debug_history/record.mcfunction</code>
+                        <CodeBlock code={`...
+scoreboard players operation [5] __debug__.histor = [4] __debug__.histor
+scoreboard players operation [4] __debug__.histor = [3] __debug__.histor
+scoreboard players operation [3] __debug__.histor = [2] __debug__.histor
+scoreboard players operation [2] __debug__.histor = [1] __debug__.histor
+scoreboard players operation [1] __debug__.histor = [CURRENT] __debug__.histor
+scoreboard players operation [CURRENT] __debug__.histor = __debug__.current __variable__`} language='elixir' />
+                        <p className="fw-bold">Example:</p>
+                        <CodeBlock code={`Debug.history(__variable__:$var, cache=5)
+Debug.showHistory()`} language='elixir' />
+                        <Related setSearchValue={setSearchValue} to="/features/built-in#debug_show_history" text="Debug.showHistory()" />
                     </Feature>
 
-                    <Feature id="debug_show_history" summary="Debug.showHistory()" keywords="variable save cache" wip>
+                    <Feature id="debug_show_history" summary="Debug.showHistory()" keywords="variable save cache">
+                        <p>Just show the variable you are caching on the sidebar.</p>
+                        <CodeBlock code={`Debug.showTrack();;`} language='javascript' />
+                        <p className="fst-italic">Output:</p>
+                        <CodeBlock code={`scoreboard objectives setdisplay sidebar __debug__.histor`} language='elixir' />
+                        <Related setSearchValue={setSearchValue} to="/features/built-in#debug_history" text="Debug.history()" />
                     </Feature>
 
-                    <Feature id="debug_cleanup" summary="Debug.cleanup()" keywords="clear scoreboard" wip>
+                    <Feature id="debug_cleanup" summary="Debug.cleanup()" keywords="clear scoreboard">
+                        <p>Remove debug objectives for "production".</p>
+                        <CodeBlock code={`Debug.cleanup()`} language='js' />
+                        <p className="fst-italic">Output:</p>
+                        <CodeBlock code={`scoreboard objectives remove __debug__.histor
+scoreboard objectives remove __debug__.track`} language='elixir' />
                     </Feature>
 
 

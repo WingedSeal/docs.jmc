@@ -26,7 +26,7 @@ const GettingStarted = () => {
                         <div className="d-flex align-items-baseline flex-wrap-reverse justify-content-center justify-content-sm-between">
                             <div className="fw-bold mb-2 me-1 fs-4">Python Version</div>
                         </div>
-                        <p>0. Download Python 3.9+ (JMC is being developed in <a href='https://www.python.org/downloads/release/python-395/' target="_blank" rel="noopener noreferrer">Python 3.9.5</a>.)</p>
+                        <p>0. Download Python 3.9+ (JMC is being developed in <a href='https://www.python.org/downloads/release/python-395/' target="_blank" rel="noopener noreferrer">Python 3.9.5</a>)</p>
                         <p>1. Download Source Code from <a href="https://github.com/WingedSeal/jmc/releases/latest" target="_blank" rel="noopener noreferrer">latest release</a>. (Or download ZIP/Clone <a href="https://github.com/WingedSeal/jmc" target="_blank" rel="noopener noreferrer">repository</a> from github)</p>
                         <p>2. (Optional, If you would like to have all libraries in global, you can skip this step) Create a virtual environment for python (<code className='code'>python -m venv venv</code>) and then activate. (For example, <code className='code'>venv\Scripts\activate</code>)</p>
                         <p>3. Install libraries from requirements.txt using <code className='code'>pip install -r requirements.txt</code></p>
@@ -65,7 +65,7 @@ main.main()`} language='python' />
                         <p>1. Download Source Code from <a href="https://github.com/WingedSeal/jmc/releases/latest" target="_blank" rel="noopener noreferrer">latest release</a>. (Or download ZIP/Clone <a href="https://github.com/WingedSeal/jmc" target="_blank" rel="noopener noreferrer">repository</a> from github)</p>
                         <p>2. (Optional, If you would like to have all libraries in global, you can skip this step) Create a virtual environment for python (<code className='code'>python -m venv venv</code>) and then activate. (For example, <code className='code'>venv\Scripts\activate</code>)</p>
                         <p>3. Install regex libary using <code className='code'>pip install regex</code></p>
-                        <p>4. Create a <code className='code'>.py</code> file at the desired directory then insert the following code (The file name cannot be <code className='code'>main.py</code>)</p>
+                        <p>4. Create a <code className='code'>.py</code> file at the desired directory then insert the following code (The file name cannot be <code className='code'>main.py</code>), This will behave exactly like Executable Version (<code className='code'>JMC-Compiler.exe</code>)</p>
                         <CodeBlock code={`import sys
 sys.path.append(r'PATH_TO_FOLDER_HERE')  # noqa
 from pathlib import Path
@@ -84,12 +84,12 @@ from jmc import DataPack  # type: ignore
 datapack = DataPack()
 datapack.init()
 datapack.compile()`} language='python' />
-                        <p>You can also change the configuration.</p>
+                        <p>You can also change the configuration. If you want to target and output take path in form of string if you want to change those.</p>
                     </ListGroup.Item>
                 </ListGroup>
                 <h2>Usage</h2>
                 <p>After you have finished installing the complier, you need a little bit of a setup.</p>
-                <p>1. Run <code className="code">JMC-Compiler.exe</code> and it'll open a GUI. (If you are using executeable version, due to how PyInstaller works, it'll take a while (10-20 seconds) to boot up the GUI. Because the code isn't actually compiled, it just hide itself and when you open it, <code className="code">JMC-Compiler.exe</code> will create a temporary hidden folder to run the python code.)</p>
+                <p>1. Run <code className="code">JMC-Compiler.exe</code> and it'll open a GUI (If you are using executeable version, due to how PyInstaller works, it'll take a while (10-20 seconds) to boot up the GUI. Because the code isn't actually compiled, it just hide itself and when you open it, <code className="code">JMC-Compiler.exe</code> will create a temporary hidden folder to run the python code)</p>
                 <p>2. Configure settings through GUI</p>
                 <p>3. Code your jmc file(s)</p>
                 <p>4. Click <code className="code">Compile</code></p>
