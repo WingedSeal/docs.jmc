@@ -613,7 +613,7 @@ Debug.showHistory()`} language='elixir' />
 
                     <Feature id="debug_show_history" summary="Debug.showHistory()" keywords="variable save cache">
                         <p>Just show the variable you are caching on the sidebar.</p>
-                        <CodeBlock code={`Debug.showTrack();;`} language='javascript' />
+                        <CodeBlock code={`Debug.showHistory();`} language='javascript' />
                         <p className="fst-italic">Output:</p>
                         <CodeBlock code={`scoreboard objectives setdisplay sidebar __debug__.histor`} language='elixir' />
                         <Related setSearchValue={setSearchValue} to="/features/built-in#debug_history" text="Debug.history()" />
