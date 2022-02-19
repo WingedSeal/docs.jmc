@@ -41,6 +41,7 @@ tellraw @a $i.toString();`} language='javascript' />
                                     <li><code className="code">__variable__</code></li>
                                     <li><code className="code">__rc__</code></li>
                                     <li><code className="code">__rejoin__</code></li>
+                                    <li><code className="code">__die__</code></li>
                                     <li><code className="code">__debug__.*</code></li>
                                 </ol>
                             </li>

@@ -328,6 +328,50 @@ function namespace:__private__/player_rejoin/0`} language='elixir' />
                         <Related setSearchValue={setSearchValue} to="/features/built-in#player_first_join" text="Player.firstJoin()" />
                     </Feature>
 
+                    <Feature id="player_die" summary="Player.die()" keywords="death respawn died">
+                        <p>Run <code className="code">onDeath</code> once a player die and <code className="code">onRespawn</code> once a player click respawn.</p>
+                        <CodeBlock code={`Player.die(onDeath=()=>{
+    <command>;
+    <command>;
+    ...
+},onRespawn=()=>{
+    <command>;
+    <command>;
+    ...
+});`} language='js' />
+                        <p className="fst-italic">Output:</p>
+                        <code className="code">__load__.mcfunction</code>
+                        <CodeBlock code={`scoreboard objectives add __die__ deathCount`} language='elixir' />
+                        <code className="code">__tick__.mcfunction</code>
+                        <CodeBlock code={`execute as @a[scores={__die__=1..}] at @s run function namespace:__private__/player_die/on_death
+execute as @e[type=player,scores={__die__=2..}] at @s run function namespace:__private__/player_die/on_respawn`} language='elixir' />
+                        <code className="code">__private__/player_die/on_death.mcfunction</code>
+                        <CodeBlock code={`scoreboard players set @s __die__ 2
+function namespace:__private__/player_die/0`} language='elixir' />
+                        <code className="code">__private__/player_die/on_respawn.mcfunction</code>
+                        <CodeBlock code={`scoreboard players reset @s __die__
+function namespace:__private__/player_die/1`} language='elixir' />
+                        <code className="code">__private__/player_die/0.mcfunction</code>
+                        <CodeBlock code={`<command>
+<command>
+...`} language='elixir' />
+                        <code className="code">__private__/player_die/1.mcfunction</code>
+                        <CodeBlock code={`<command>
+<command>
+...`} language='elixir' />
+                        <p className="fw-bold">Example:</p>
+                        <CodeBlock code={`Player.die(())=>{
+    tellraw @a "Someone died~";
+});`} language='elixir' />
+                        <p className="fw-bold">Example:</p>
+                        <CodeBlock code={`Player.die(onDeath=()=>{
+    tellraw @a "Someone died~";
+}, onRespawn=()=>{
+    tellraw @s "Welcome back to live";
+});`} language='elixir' />
+
+                    </Feature>
+
                     <Feature id="trigger_setup" summary="Trigger.setup()" keywords="permissions perms scoreboard op">
                         <p>Setup a trigger system for custom command or allowing players with no permission to click a text button. <span className="text-danger">(<code className="code">{`<objective>`}</code> must be no more than 16 characters long. ID can range from 1 to Java's long MAX_VALUE (9,223,372,036,854,775,807).) </span></p>
                         <p>You if you are not making a custom command. It is recommended that you only use 1 objective (Call setup once) for optimization.</p>
@@ -621,7 +665,7 @@ Debug.showHistory()`} language='elixir' />
 
                     <Feature id="debug_cleanup" summary="Debug.cleanup()" keywords="clear scoreboard">
                         <p>Remove debug objectives for "production".</p>
-                        <CodeBlock code={`Debug.cleanup()`} language='js' />
+                        <CodeBlock code={`Debug.cleanup();`} language='js' />
                         <p className="fst-italic">Output:</p>
                         <CodeBlock code={`scoreboard objectives remove __debug__.histor
 scoreboard objectives remove __debug__.track`} language='elixir' />
