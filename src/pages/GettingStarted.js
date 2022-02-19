@@ -21,6 +21,13 @@ const GettingStarted = () => {
                         <p>Simply download <a href="https://github.com/WingedSeal/jmc/releases/latest/download/JMC-Compiler.exe" rel="noopener noreferrer">JMC-compiler.exe</a> from
                             Github. (Or find a latest pre-release version <a href="https://github.com/WingedSeal/jmc/releases" target="_blank" rel="noopener noreferrer">here</a>.)</p>
                         <p>Then put <span className="fw-bold">JMC-Compiler.exe</span> in any directory, preferably, your datapack folder (The folder that will have <code className='code'>data</code> folder and <code className='code'>pack.mcmeta</code> inside. For example, <code className='code'>C:/Users/User/AppData/Roaming/.minecraft/profiles/1.17.1 Fabric/saves/JMC World/datapacks/My Datapack/JMC-Compiler.exe"</code>)</p>
+                        <div className="align-self-center" style={{ width: "min(80%, 1080px)", aspectRatio: "16/9" }}>
+                            <iframe
+                                width="100%" height="100%"
+                                src="https://www.youtube-nocookie.com/embed/zMUAbL5mB9Q"
+                                title="YouTube video player"
+                                frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen />
+                        </div>
                     </ListGroup.Item>
                     <ListGroup.Item as="li" className="fs-5 d-flex flex-column">
                         <div className="d-flex align-items-baseline flex-wrap-reverse justify-content-center justify-content-sm-between">
