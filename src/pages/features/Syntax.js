@@ -360,7 +360,7 @@ execute if score $__private__.i __variable__ matches ..10 run function namespace
                         <Related setSearchValue={setSearchValue} to='/features/syntax#condition' text='Condition' />
                     </Feature>
 
-                    <Feature id="switch_case" summary="Switch Case">
+                    <Feature id="switch_case" summary="Switch Case" keywords='log binary search tree'>
                         <p>Perfect for optimization of your code. JMC's switch case will use <a href="https://en.wikipedia.org/wiki/Binary_search_tree">Binary search tree</a> with <a href="https://en.wikipedia.org/wiki/Binary_search_algorithm">Binary search algorithm</a> to reduce <a href="https://en.wikipedia.org/wiki/Time_complexity">Time Complexity</a> of searching for function dedicated to a value of variable to <span className="fw-bold">O(logn)</span>. Switch Case will run commands according to the value of given variable.</p>
                         <p>But performance come with cost of restrictions.</p>
                         <ul>
