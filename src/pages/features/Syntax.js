@@ -210,7 +210,7 @@ $<variable> (==|=) [<integer>]..[<integer>]`} language='javascript' />
                     </Feature>
 
                     <Feature id="if_else" summary="If/Else">
-                        <p>Simulate programming languages' <code className="code">If</code>, <code className="code">Else</code> using temporary variable and "anonymouse function". So you can write if/else in JavaScript and the compiler will handle the logic for you. But since this is minecraft function, a long chain of if else will slow your code down even if the condition is already met in the first <code className="code">if</code>.</p>
+                        <p>Simulate programming languages' <code className="code">If</code>, <code className="code">Else</code> using temporary variable and "anonymouse function". So you can write if/else in JavaScript and the compiler will handle the logic and optimization for you. The chain will be terminated once a codition is satisfied.<code className="code">else if</code> and <code className="code">else</code> are not required.</p>
                         <CodeBlock code={`if (<condition>) { 
     <command>;
     <command>;
@@ -232,29 +232,30 @@ $<variable> (==|=) [<integer>]..[<integer>]`} language='javascript' />
                         <code className="code">__load__.mcfunction</code>
                         <CodeBlock code={`scoreboard players set __tmp__ __variable__ 0
 execute if <condition> run function namespace:__private__/if_else/0
-execute if score __tmp__ __variable__ matches 0 if <condition> run function namespace:__private__/if_else/1
-execute if score __tmp__ __variable__ matches 0 if <condition> run function namespace:__private__/if_else/2
-execute if score __tmp__ __variable__ matches 0 run function namespace:__private__/if_else/3`} language='elixir' />
+execute if score __tmp__ __variable__ matches 0 run function namespace:__private__/if_else/1`} language='elixir' />
                         <code className="code">__private__/if_else/0.mcfunction</code>
-                        <CodeBlock code={`<command>;
-<command>;
-...
+                        <CodeBlock code={`<command>
+<command>
+... 
 scoreboard players set __tmp__ __variable__ 1`} language='elixir' />
                         <code className="code">__private__/if_else/1.mcfunction</code>
-                        <CodeBlock code={`<command>;
-<command>;
-...
-scoreboard players set __tmp__ __variable__`} language='elixir' />
+                        <CodeBlock code={`execute if <condition> run function namespace:__private__/if_else/2
+execute if score __tmp__ __variable__ matches 0 run function namespace:__private__/if_else/3`} language='elixir' />
                         <code className="code">__private__/if_else/2.mcfunction</code>
-                        <CodeBlock code={`<command>;
-<command>;
-...
-scoreboard players set __tmp__ __variable__`} language='elixir' />
+                        <CodeBlock code={`<command>
+<command>
+... scoreboard players set __tmp__ __variable__ 1`} language='elixir' />
                         <code className="code">__private__/if_else/3.mcfunction</code>
-                        <CodeBlock code={`<command>;
-<command>;
-...
-scoreboard players set __tmp__ __variable__`} language='elixir' />
+                        <CodeBlock code={`execute if <condition> run function namespace:__private__/if_else/4
+execute if score __tmp__ __variable__ matches 0 run function namespace:__private__/if_else/5`} language='elixir' />
+                        <code className="code">__private__/if_else/4.mcfunction</code>
+                        <CodeBlock code={`<command>
+<command>
+... scoreboard players set __tmp__ __variable__ 1`} language='elixir' />
+                        <code className="code">__private__/if_else/5.mcfunction</code>
+                        <CodeBlock code={`<command>
+<command>
+...`} language='elixir' />
                         <p className="fw-bold">Example:</p>
                         <CodeBlock code={`function do_i_have_tag() {
     if (entity @s[tag=my_tag]) { 
@@ -357,6 +358,60 @@ scoreboard players operation $__private__.i __variable__ += 1 __int__
 execute if score $__private__.i __variable__ matches ..10 run function namespace:__private__/for_loop/17`} language='elixir' />
                         <Related setSearchValue={setSearchValue} to='/features/built-in#to_string' text='toString()' />
                         <Related setSearchValue={setSearchValue} to='/features/syntax#condition' text='Condition' />
+                    </Feature>
+
+                    <Feature id="switch_case" summary="Switch Case">
+                        <p>Perfect for optimization of your code. JMC's switch case will use <a href="https://en.wikipedia.org/wiki/Binary_search_tree">Binary search tree</a> with <a href="https://en.wikipedia.org/wiki/Binary_search_algorithm">Binary search algorithm</a> to reduce <a href="https://en.wikipedia.org/wiki/Time_complexity">Time Complexity</a> of searching for function dedicated to a value of variable to <span className="fw-bold">O(logn)</span>. Switch Case will run commands according to the value of given variable.</p>
+                        <p>But performance come with cost of restrictions.</p>
+                        <ul>
+                            <li>Case can only starts at 1 and increase in ascending order.</li>
+                            <li>You can not skip a number. <span className="fst-italic">Case n+1</span> must comes after <span className="fst-italic">Case n</span>.</li>
+                            <li>You are required to <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/break">break</a> out of switch statements. Eventhough, you are not required to deliberately use the <code className="code">break</code> keyword, JMC will do that for you.</li>
+                            <li>Default case cannot be added. (It is a case that runs when nothing matches.)</li>
+                        </ul>
+                        <p className='text-danger'>JMC isn't actually reading for the number after case keyword. It assumes that <span className="fst-italic">Case n+1</span> comes after <span className="fst-italic">Case n</span>. So if you accidentally skip a number. It might not work as intended.</p>
+                        <CodeBlock code={`switch($<variable>) {
+    case 1:
+        <command>;
+        <command>;
+        ...
+        break;
+    case 2:
+        <command>;
+        <command>;
+        ...
+        break;
+    case 3:
+        <command>;
+        <command>;
+        ...
+        break;
+    case 4:
+        <command>;
+        <command>;
+        ...
+        break;
+    ...
+}`} language='javascript' />
+                        <p className="fw-bold">Example:</p>
+                        <CodeBlock code={`function askJob() {
+    scoreboard players operation $job_id __variable__ = @s job_id;
+    switch($job_id) {
+        case 1:
+            tellraw @s "You are a lumberjack.";
+        case 2:
+            tellraw @s "You are a policeman.";
+        case 3:
+            tellraw @s "You are a soldier.";
+        case 4:
+            tellraw @s "You are a doctor.";
+        case 5:
+            tellraw @s "You are a pilot.";
+        case 6:
+            tellraw @s "You are a god?";
+    }
+}`} language='javascript' startline={17} />
+                        <Related setSearchValue={setSearchValue} to='/features/built-in#hardcode_switch' text='Hardcode.switch()' />
                     </Feature>
 
                     <h2>Creating JSON file</h2>

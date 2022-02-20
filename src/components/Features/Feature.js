@@ -22,18 +22,13 @@ const isDisplay = (summary, searchValue, keywords) => {
 
         if (value.length > 1 && value.charAt(0) === '"' && value.charAt(value.length - 1) === '"') {
             value = value.substring(1, value.length - 1);
-            if (summary.includes(value)) {
-                return "block"
-            }
-        } else {
-            if (summary.includes(value)) {
-                return "block"
-            }
-            if (keywords.includes(value)) {
-                return "block"
-            }
         }
-
+        if (summary.includes(value)) {
+            return "block"
+        }
+        if (keywords.includes(value)) {
+            return "block"
+        }
     }
     return "none"
 }

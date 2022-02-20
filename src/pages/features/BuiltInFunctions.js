@@ -34,7 +34,7 @@ const BuiltInFunctions = () => {
                         <CodeBlock code={`{"score":{"name":"$deathCount","objective":"__variable__"}}`} language='json' />
                     </Feature>
 
-                    <Feature id="rightclick_setup" summary="RightClick.setup()" keywords="detect carrot">
+                    <Feature id="rightclick_setup" summary="RightClick.setup()" keywords="detect carrot on a stick carrot_on_a_stick">
                         <p>Setup basic carrot_on_a_stick right click detection with selected item detection. You can map any id to a series of commands. When any player right click with the item, the command matching the id will be run. (ID can range from 0 to Java's long MAX_VALUE (9,223,372,036,854,775,807) <span className="text-danger">while ID 0 being default which will be run if player right click with *any* Carrot on a stick that doesn't have ID.</span>)</p>
                         <p>You are allowed to setup multiple times with different id_name but that isn't recommended due to optimization issue.</p>
                         <CodeBlock code={`RightClick.setup(<id_name>, {
@@ -232,9 +232,10 @@ tellraw @a $var.toString();`} language='javascript' />
 
                     <Feature id="hardcode_repeat" summary="Hardcode.repeat()">
                         <p>Some features in minecraft datapack require hard coding, this function will be a tool to help you.</p>
+                        <p><code className="code">command</code> inside must be a complete command. <span className="text-danger">This do not work on Switch Case statement. Use Hardcode.switch() instead</span></p>
                         <CodeBlock code={`Hardcode.repeat("<index_string>", ()=>{
-    <commands>;
-    <commands>;
+    <command>;
+    <command>;
     ...
 }, start=<start>, stop=<stop>, step=<step>);`} language='python' />
                         <p>Will repeat the command multiple times with <span className="fst-italic">index</span>.</p>
@@ -251,10 +252,11 @@ tellraw @a "Hello World: 3"
 tellraw @a "Hello World: 4"
 tellraw @a "Hello World: 5"`} language='json' />
                         <Related setSearchValue={setSearchValue} to="/features/built-in#hardcode_calc" text="Hardcode.calc()" />
+                        <Related setSearchValue={setSearchValue} to="/features/built-in#hardcode_switch" text="Hardcode.switch()" />
                     </Feature>
 
                     <Feature id="hardcode_calc" summary="Hardcode.calc()">
-                        <p>Calculate expression inside. <span className="text-danger">This will only work in <code className="code">Hardcode.repeat()</code></span></p>
+                        <p>Calculate expression inside. <span className="text-danger">This will only work in <code className="code">Hardcode.repeat()</code> or <code className="code">Hardcode.switch()</code>.</span></p>
                         <CodeBlock code={`Hardcode.calc(<expression>)`} language='python' />
                         <details className='drop_down mb-3 ms-2'>
                             <summary>All available operators</summary>
@@ -277,6 +279,44 @@ tellraw @a "3^2=9"
 tellraw @a "4^2=16"
 tellraw @a "5^2=25"`} language='elixir' />
                         <Related setSearchValue={setSearchValue} to="/features/built-in#hardcode_repeat" text="Hardcode.repeat()" />
+                        <Related setSearchValue={setSearchValue} to="/features/built-in#hardcode_switch" text="Hardcode.switch()" />
+                    </Feature>
+
+                    <Feature id="hardcode_switch" summary="Hardcode.switch()">
+                        <p>Hardcode.repeat() for switch statement.</p>
+                        <CodeBlock code={`Hardcode.switch($<variable>, "<index_string>", ()=>{
+    <command>;
+    <command>;
+    ...
+}, count=<count>);`} language='python' />
+                        <p>Works almost exactly like <code className="code">Hardcode.repeat()</code> but for Switch Case and <code className="code">{`<start>`}</code> and <code className="code">{`<step>`}</code> will bet set to 1 while <code className="code">{`<stop>`}</code> will be set to count+1.</p>
+                        <p className="fw-bold">Example:</p>
+                        <CodeBlock code={`Hardcode.switch($var, "index", ()=>{
+    tellraw @s "index";
+    tellraw @s "Hardcode.calc(index**2)";
+}, count=5)`} language='python' />
+                        <p className="fst-italic">Output:</p>
+                        <CodeBlock code={`function namespace:__private__/hard_code_switch/0`} language='js' />
+                        <code className="code">__private__/hard_code_switch/0</code> (Pre-compiled)
+                        <CodeBlock code={`switch($var) {
+    case 1:
+        tellraw @s "1";
+        tellraw @s "1";
+    case 2:
+        tellraw @s "2";
+        tellraw @s "4";
+    case 3:
+        tellraw @s "3";
+        tellraw @s "9";
+    case 4:
+        tellraw @s "4";
+        tellraw @s "16";
+    case 5:
+        tellraw @s "5";
+        tellraw @s "25";
+}`} language='js' />
+                        <Related setSearchValue={setSearchValue} to="/features/built-in#hardcode_repeat" text="Hardcode.repeat()" />
+                        <Related setSearchValue={setSearchValue} to="/features/built-in#hardcode_calc" text="Hardcode.calc()" />
                     </Feature>
 
                     <Feature id="player_first_join" summary="Player.firstJoin()">
@@ -370,6 +410,10 @@ function namespace:__private__/player_die/1`} language='elixir' />
     tellraw @s "Welcome back to live";
 });`} language='elixir' />
 
+                    </Feature>
+
+                    <Feature id="player_on_event" summary="Player.onEvent()" keywords="scoreboard jump drop craft stats change" wip>
+                        <p>Run commands on change of scoreboard.</p>
                     </Feature>
 
                     <Feature id="trigger_setup" summary="Trigger.setup()" keywords="permissions perms scoreboard op">

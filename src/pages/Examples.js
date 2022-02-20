@@ -36,11 +36,9 @@ Player.die(onRespawn=()=>{
 });
 
 function setHealth() {
-    Hardcode.repeat("index", ()=>{
-        if ($hp==index) {
-            attribute @s minecraft:generic.max_health base set index;
-        }
-    }, start=1, stop=31, step=1);
+    Hardcode.switch($hp, "index", ()=>{
+        attribute @s minecraft:generic.max_health base set index;
+    }, count=30);
     effect give @s minecraft:instant_health 1 255 true;
     effect give @s minecraft:regeneration 1 255 true;
 }

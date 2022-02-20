@@ -24,9 +24,9 @@ const GettingStarted = () => {
                         <div className="align-self-center" style={{ width: "min(80%, 1080px)", aspectRatio: "16/9" }}>
                             <iframe
                                 width="100%" height="100%"
-                                src="https://www.youtube-nocookie.com/embed/zMUAbL5mB9Q"
+                                src="https://www.youtube-nocookie.com/embed/zMUAbL5mB9Q?rel=0"
                                 title="YouTube video player"
-                                frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen />
+                                frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen />
                         </div>
                     </ListGroup.Item>
                     <ListGroup.Item as="li" className="fs-5 d-flex flex-column">
@@ -87,7 +87,7 @@ set_configs({
     'debug_mode': False
 })
 
-from jmc import DataPack  # type: ignore
+from jmc import DataPack  # type: ignore # noqa
 datapack = DataPack()
 datapack.init()
 datapack.compile()`} language='python' />
